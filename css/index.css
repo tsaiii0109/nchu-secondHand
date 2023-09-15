@@ -1,0 +1,660 @@
+body{
+    background-size: contain;
+    background-repeat: repeat;
+}
+.app{
+    width: 375px;
+    margin: 0 auto;
+}
+.firstPage{
+    width: 100%;
+    height: 100vh;
+    margin: 0 auto;
+}
+.banner{
+    width: 100%;
+    height: 130px;
+    background-image: url(../img/NCHU.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.intro{
+    width: 90%;
+    margin-left: 35px;
+    height: 120px;
+    line-height: 1.5;
+    font-size: 10px;
+    text-align: justify;
+}
+.login{
+    width: 100%;
+}
+.login>h1{
+    width: 100%;
+    text-align: center;
+    line-height: 2;
+    font-size: 20px;
+}
+.loginForm{
+    width: 100%;
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.user,.password,.loginBtn{
+    width: 90%;
+    height: 30px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.icon{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loginInput{
+    width: 260px;
+    height: 40px;
+    border-bottom: 1px solid skyblue;
+}
+.loginInput>input{
+    width: 100%;
+    height: 100%;
+    border: 0;
+    padding-left: 10px;
+    font-size: 18px;
+}
+.loginBtn{
+    height: 50px;
+    border: 1px solid skyblue;
+    color: skyblue;
+    border-radius: 15px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 20px;
+}
+.loginBtn:hover{
+    cursor: pointer;
+    border: 1px solid white;
+    color: white;
+    background-color: skyblue;
+}
+.goReg{
+    font-size: 14px;
+    height: 10px;
+    color: skyblue;
+}
+.goReg:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+/* mainPage */
+.mainPage{
+    width: 100%;
+    position: relative;
+}
+.pin{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top:2px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    background-image: url(../img/pin2.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.item-intro,.item-intro2{
+    width: 90%;
+    height: 460px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top:80px;
+    bottom:0;
+    margin: auto auto;
+    z-index: 1005;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 7px;
+}
+.item-intro2{
+    height: 550px;
+    background-image: url(../img/form.jpeg);
+    background-size: 115% 110%;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+.item-intro3{
+    z-index: 1005;
+    background-size: 115% 110%;
+    background-image: url(../img/form.jpeg);
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+.mark{
+    position: absolute;
+    top:5px;
+    left:5px;
+    font-size: 26px;
+    color: gray;
+}
+.mark:hover{
+    cursor: pointer;
+}
+.item-intro>img{
+    width: 100%;
+    height: 168.75px;
+    border-radius: 7px 7px 0 0;
+}
+.item-intro>h1{
+    width: 100%;
+    padding-left: 7px;
+    padding-right: 7px;
+    line-height: 1.2;
+    height: 30px;
+    overflow: hidden;
+    color: brown;
+}
+.item-intro>p{
+    width: 100%;
+    padding-left: 7px;
+}
+.intro-total{
+    position: absolute;
+    bottom: 15px;
+    left: 10px;
+}
+.ct-intro{
+    width: 327.5px;
+    margin: 0 auto;
+    margin-top: 5px;
+}
+.ct-intro-title{
+    width: 30%;
+    line-height: 1.5;
+    padding-left: 4px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.ct-intro-main{
+    height: 156px;
+    line-height: 1.2;
+    margin-top: 5px;
+    overflow: scroll;
+    text-align: justify;
+    padding: 5px;
+}
+.item-intro-footer{
+    width: 100%;
+    height: 45px;
+    margin-top: 5px;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    position: relative;
+}
+.item-intro-btn{
+    width: 120px;
+    height: 80%;
+    margin: 0 auto;
+    background-color: orange;
+    color: white;
+    position: absolute;
+    top:4px;
+    right: 10px;
+    text-align: center;
+    line-height: 34.4px;
+}
+.item-intro-btn:hover{
+    cursor: pointer;
+    background-color: rgba(255,165,0,0.8);
+}
+.mpTitle{
+    width: 375px;
+    height: 10vh;
+    background-color: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position: fixed;
+    z-index: 1004;
+    text-shadow: 2px 2px 1px rgba(255,255,255,0.4);
+}
+.mpLogo{
+    width: 30%;
+    height: 37.5px;
+    color: white;
+    line-height: 37.5px;
+    text-align: center;
+    font-size: 18px;
+}
+.filter{
+    width: 20%;
+    height: 37.5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+.filter:hover{
+    cursor: pointer;
+}
+.content{
+    width: 100%;
+    height: 90vh;
+}
+.content-control{
+    width: 100%;
+    height: 99vh;
+    padding-top: 80px;
+    overflow: scroll;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: flex-start;
+    padding-left: 8px;
+}
+.content-box{
+    width: 46%;
+    height: 235px;
+    margin: 5px;
+    position: relative;
+    box-shadow: 1px 2px 3px gray;
+    border-radius: 6px;
+    background-color: white;
+}
+.content-box:hover{
+    cursor: pointer;
+}
+.content-box>img{
+    width: 100%;
+    height: 168.81px;
+    border-radius: 6px 6px 0 0;
+}
+.content-box>h1{
+    font-size: 14px;
+    line-height: 1.2;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 100%;
+    height: 35px;
+    overflow: hidden;
+    color: brown;
+}
+.content-box>p{
+    font-size: 20px;
+    position: absolute;
+    bottom: 4px;
+    left: 5px;
+}
+.content-control2{
+    overflow-x: hidden;
+    display: block;
+    padding-left: 0;
+}
+.content-box2{
+    width: 95%;
+    height: 110px;
+    position: relative;
+    margin: 0 auto;
+    margin-bottom: 12px;
+}
+.content-box2:hover{
+    cursor: initial;
+}
+.artist{
+    height: 40px;
+    width: 65%;
+    left: 5px;
+    top:5px;
+    padding-left: 5px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(0,0,0,0.4);
+}
+.artist>img{
+    width: 30px;
+    border: 1px dashed gray;
+    border-radius: 15px;
+}
+.artist>p{
+    margin-left: 7px;
+    font-size: 13px;
+}
+.artist-c{
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 5px;
+    height: 60px;
+    padding: 5px;
+    line-height: 1.2;
+    font-size: 13px;
+    overflow-y: scroll;
+}
+.shop{
+    padding-top: 20px;
+    width: 100%;
+    height: 560px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    position: relative;
+}
+.shop-title{
+    width: 80%;
+    margin: 0 auto;
+    height: 20px;
+}
+.stt{
+    width: 100%;
+    line-height: 10px;
+    height: 10px;
+}
+.shop-title>input{
+    border: 0;
+    border-bottom: 1px solid skyblue;
+    height: 30px;
+    width: 260px;
+    background-color: rgba(255,255,255,0.1);
+}
+.shop-title>textarea{
+    width: 260px;
+    height: 30px;
+}
+.shop-title>select{
+    width: 100px;
+    height: 25px;
+}
+.shopbtn{
+    width: 80%;
+    margin: 0 auto;
+    height: 40px;
+    background-color: rgba(255,165,0,0.9);
+    margin-top: -35px;
+    text-align: center;
+    line-height: 40px;
+    color: white;
+}
+.shopbtn:hover{
+    cursor: pointer;
+    background-color: rgba(255,165,0,0.7);
+}
+.mark2{
+    position: absolute;
+    top:4px;
+    left:7px;
+    font-size: 28px;
+}
+.mark2:hover{
+    cursor: pointer;
+}
+.filterBar{
+    width: 0;
+    height: 75px;
+    background-color: rgba(0,0,0,0.45);
+    transition: 0.75s;
+    color: white;
+    font-size: 14px;
+    position: absolute;
+    bottom: -75px;
+    z-index: 1003;
+}
+.showBar{
+    width: 100%;
+}
+.filterBar>div{
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content:left;
+    align-items: center;
+    flex-wrap: wrap;
+    transition: 0.75s;
+    padding-top: 5px;
+    padding-left: 5px;
+}
+.filterBar>div>div{
+    width: 25%;
+    height: 30px;
+    line-height: 1.6;
+}
+.showRadio{
+    display: flex !important;
+}
+.list{
+    width: 80%;
+    height: 360px;
+    margin: 0 auto;
+    overflow: scroll;
+}
+.item-intro>.list-h1{
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 20px;
+    text-align: center;
+    line-height: 50px;
+    height: 50px;
+    font-size: 26px;
+    border-bottom: 1px solid gray;
+    color: black;
+}
+.li-c{
+    width: 100%;
+    height: 40px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: nowrap;
+    text-align: center;
+    line-height: 40px;
+}
+.li-title{
+    width: 36%;
+    height: 100%;
+    font-size: 10px;
+    word-wrap: break-word;
+    line-height: 1.2;
+    padding-top: 5px;
+    text-align: justify;
+    overflow-y: scroll;
+}
+.li-price{
+    width: 30%;
+    height: 100%;
+    overflow: hidden;
+}
+.li-key{
+    width: 33%;
+    height: 100%;
+}
+.li-key:hover{
+    cursor: pointer;
+    background-color: rgba(222,184,135,0.6);
+    color: white;
+}
+.alertMsgBlock{
+    width: 300px;
+    height: 40px;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 40px;
+    background-color: rgba(255,255,255,0.7);
+    font-size: 13px;
+    position: fixed;
+    top:10px;
+    left: 0;
+    right:0;
+    margin: 0 auto;
+    z-index: 1006;
+}
+.check{
+    color: greenyellow;
+    font-size: 14.5px;
+}
+.warn{
+    color:orange;
+    font-size: 14.5px;
+}
+.error{
+    color: red;
+    font-size: 14.5px;
+}
+.re{
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-size: 10px;
+}
+.it{
+    box-shadow: 9px 12px 4px rgba(0,0,0,0.2);
+}
+.sort:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+.file{
+    margin-top: 12px;
+    height: 35px !important;
+    line-height: 35px !important;
+}
+.canvas{
+    display: none;
+}
+.search{
+    width: 230px;
+    height: 35px;
+    padding-left: 12px;
+    display: flex;
+    align-items: center;
+    color: white;
+    border: 1px solid rgba(255,255,255,0.7);
+    border-radius: 30px;
+}
+.search>input{
+    background-color: transparent;
+    border: 0;
+    height: 25px;
+    width: 84%;
+    color: white;
+    padding-left: 10px;
+    margin-left: 5px;
+}
+.footer{
+    width: 375px;
+    height: 9vh;
+    margin: 0 auto;
+    position: fixed;
+    bottom: 0px;
+    background-color: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    z-index: 1004;
+    text-shadow: 2px 2px 1px rgba(255,255,255,0.4);
+}
+.footer-content{
+    width: 20%;
+    height: 100%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.footer-content>i{
+    height: 39px;
+    line-height: 39px;
+}
+.footer-content>span{
+    font-size: 14px;
+}
+.footer-content:hover{
+    cursor: pointer;
+    background-color: rgba(0,0,0,0.7);
+}
+.write{
+    width: 55px;
+    height: 55px;
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 55px;
+    font-size: 20px;
+    background-color: rgba(0,0,0,0.6);
+    color: white;
+}
+.write:hover{
+    cursor: pointer;
+    background-color: rgba(0,0,0,0.7);
+}
+.art-date{
+    position: absolute;
+    font-size: 12px;
+    height: 20px;
+    line-height: 20px;
+    right: 10px;
+    top:10px;
+}
+.forum-title{
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 20px;
+    text-align: center;
+    line-height: 50px;
+    height: 50px;
+    font-size: 26px;
+    border-bottom: 1px solid gray;
+    color: black;
+}
+.forum-content{
+    width: 80%;
+    height: 300px;
+    margin: 0 auto;
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 50px;
+    padding: 5px;
+    font-size: 16px;
+}
+.forum-form{
+    display: block;
+}
+.item-intro4{
+    height: 500px;
+}
+.menu{
+    width: 10px;
+    height: 10px;
+    text-align: center;
+}
+.menuBox{
+    text-align: center;
+    height: 0;
+    background-color: rgba(0,0,0,0.2);
+    transition: 0.75s;
+}
+.art-date>i{
+    cursor: pointer;
+}
+.menu-c{
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    line-height: 2;
+    color: white;
+}
+.menu-c:hover{
+    cursor: pointer;
+    background-color: rgba(0,0,0,0.4);
+}
+.menuShow{
+    height: 25px;
+}
