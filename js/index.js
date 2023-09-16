@@ -464,7 +464,9 @@ window.onload=function(){
 function ToolDisabled(){
     window.oncontextmenu=function(){return false;} 
     window.onkeydown = window.onkeyup = window.onkeypress = function () { 
-        window.event.returnValue = false; 
-        return false; 
+        if (window.event.keyCode == 123) {
+            window.event.returnValue = false;
+            return false;
+        }
     } 
 }
