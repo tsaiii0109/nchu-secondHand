@@ -134,7 +134,7 @@ window.onload=function(){
                 }
             },
             // 刷新
-            getProduct(){
+            getProduct(flag){
                 const url='https://script.google.com/macros/s/AKfycbxiOOtOJpveUq87GXIOw2ZwiW0Va7zyVr00T0j_vJItlUVrTNmNYFyUxGdWGpWKRduu/exec';
                 var config={
                     method:"GET",
@@ -150,6 +150,11 @@ window.onload=function(){
                     this.product=resp;
                     this.allData=resp;
                     this.sort();
+                    if(flag=='auto'){
+                        var fr =document.getElementById('fr');
+                        fr.classList.remove('fa-spin');
+                        this.alert('刷新成功','check')
+                    }
                 })
             },
             // 刷新
@@ -316,12 +321,27 @@ window.onload=function(){
                 this.uploadItem.mail=this.loginData.user;
                 document.getElementsByTagName('body')[0].style='background-image: url(img/bg2.jpg);'
             },
-            refresh(){
-                this.getProduct();
+            refresh(flag){
+                this.getProduct(flag);
                 this.getFilter();
                 this.getOwner();
                 this.getForum();
                 this.sort(); // 必要存在
+            },
+            spinRefresh(){
+                var fr =document.getElementById('fr');
+                if(confirm('確認刷新？')){
+                    this.alert('刷新商品列','warn');
+                    fr.classList.add('fa-spin')
+                    this.refresh('auto');
+                }
+            },
+            msgRefresh(){
+                var msgScroll= document.getElementById('msgScroll');
+                if(msgScroll.scrollTop==0) {
+                    this.alert('刷新論壇','warn');
+                    this.getForum('auto');
+                }
             },
             alert(msg,option){
                 clearTimeout(this.alertTimer)
@@ -330,7 +350,7 @@ window.onload=function(){
                 this.alertOption=option;
                 this.alertTimer = setTimeout(() => {
                     this.alertMsgBlock=false;
-                }, 3250);
+                }, 2500);
             },
             sort(){
                 if(this.sortFlag==1) { //由低至高
@@ -416,7 +436,7 @@ window.onload=function(){
                     })
                 }
             },
-            getForum(){
+            getForum(flag){
                 const url='https://script.google.com/macros/s/AKfycbxqzW2ldcPsa0s5UoVAnbTSFQBWSGN7BeCzFinDUm0JAAqPZr3tuBLGD5X1o8tg3uoEIw/exec';
                 var config={
                     method:"GET",
@@ -426,6 +446,7 @@ window.onload=function(){
                 .then(resp=>resp.json())
                 .then(resp=>{
                     this.forumItem=resp.reverse();
+                    if(flag=='auto') this.alert('刷新成功','check');
                 })
             },
             deleteForum(key){

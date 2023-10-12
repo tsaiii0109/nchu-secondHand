@@ -658,3 +658,15 @@ body{
 .menuShow{
     height: 25px;
 }
+#fr{
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    z-index: 999;
+    font-size: 28px;
+    color: white;
+    text-shadow: 2px 2px 2px gray;
+}
+#fr:hover{
+    cursor: pointer;
+}

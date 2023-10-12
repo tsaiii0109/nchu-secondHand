@@ -195,6 +195,7 @@
                 </div>
             </div>
             <div class="content" v-if="mainPageIndex==0">
+                <i id='fr' class="fa-solid fa-arrows-rotate" @click="spinRefresh()"></i>
                 <div class="content-control">
                     <div class="content-box" 
                     v-if="obj.title.includes(keyword)" 
@@ -209,7 +210,7 @@
                 </div>
             </div>
             <div class="content" v-if="mainPageIndex==1">
-                <div class="content-control content-control2">
+                <div class="content-control content-control2" @scroll="msgRefresh()" id="msgScroll">
                     <div class="content-box content-box2" v-for="obj,index in forumItem">
                         <div class="art-date">{{obj.date}}
                             <i v-if="loginData.user==obj.user" @click="toggleMenu(index)" class="fa-solid fa-ellipsis-vertical menu"></i>
