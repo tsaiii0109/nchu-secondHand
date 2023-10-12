@@ -105,7 +105,7 @@ window.onload=function(){
             },
             login(){
                 if(this.loginData.user=='' || this.loginData.password=='' || this.loginData.code=='') this.alert('請勿空白','error');
-                else{
+                else if(!this.loginSuccess){ // 阻擋二次驗證
                     this.alert('驗證中，請稍候','warn');
                     const url='https://script.google.com/macros/s/AKfycbyYJ0rWfG0aJhLLEu06BWXIDJrWAmtiAfPLv-eSvW8_TjlmWniiVb15u5sHhQo2hxYZ/exec';
                     var formData=new FormData();
@@ -321,7 +321,7 @@ window.onload=function(){
                 this.getFilter();
                 this.getOwner();
                 this.getForum();
-                this.sort();
+                this.sort(); // 必要存在
             },
             alert(msg,option){
                 clearTimeout(this.alertTimer)
