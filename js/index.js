@@ -144,8 +144,7 @@ window.onload=function(){
                 .then(resp=>{
                     vm.autoLogin(); // 延遲自動登入
                     return resp.json();
-                }
-                )
+                })
                 .then(resp=>{ 
                     this.product=resp;
                     this.allData=resp;
@@ -330,7 +329,7 @@ window.onload=function(){
                 this.alertOption=option;
                 this.alertTimer = setTimeout(() => {
                     this.alertMsgBlock=false;
-                }, 2500);
+                }, 3250);
             },
             sort(){
                 if(this.sortFlag==1) { //由低至高
@@ -375,8 +374,8 @@ window.onload=function(){
                     var height=img.offsetHeight;
                     document.body.removeChild(img);
                     // 調整大小
-                    img.width=width>=680?680:width;
-                    img.height=width>=680?height*(680/width):height;
+                    img.width=width>=510?510:width;
+                    img.height=width>=510?height*(510/width):height;
                     // 設定畫布大小
                     var canvas = document.getElementById('canvas');
                     canvas.width=img.width;
