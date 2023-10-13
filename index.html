@@ -178,13 +178,13 @@
                     <div class="filter" @click="showFilter()"><i class="fa-solid fa-filter"></i></div>
                     <div class="filterBar" id="filterBar">
                         <div id="fil">
-                            <div><input type="radio" name="filter" :change="doFilter()" value="all" v-model="filterName">全部</div>
-                            <div><input type="radio" name="filter" :change="doFilter()" value="宿舍用品" v-model="filterName">宿舍用品</div>
-                            <div><input type="radio" name="filter" :change="doFilter()" value="電子用品" v-model="filterName">電子用品</div>
-                            <div><input type="radio" name="filter" :change="doFilter()" value="書籍" v-model="filterName">書籍</div>
-                            <div><input type="radio" name="filter" :change="doFilter()" value="衣物" v-model="filterName">衣物</div>
-                            <div><input type="radio" name="filter" :change="doFilter()" value="零食" v-model="filterName">零食</div>
-                            <div><input type="radio" name="filter" :change="doFilter()" value="其他" v-model="filterName">其他</div>
+                            <div><input type="radio" name="filter" value="all" v-model="filterName">全部</div>
+                            <div><input type="radio" name="filter" value="宿舍用品" v-model="filterName">宿舍用品</div>
+                            <div><input type="radio" name="filter" value="電子用品" v-model="filterName">電子用品</div>
+                            <div><input type="radio" name="filter" value="書籍" v-model="filterName">書籍</div>
+                            <div><input type="radio" name="filter" value="衣物" v-model="filterName">衣物</div>
+                            <div><input type="radio" name="filter" value="零食" v-model="filterName">零食</div>
+                            <div><input type="radio" name="filter" value="其他" v-model="filterName">其他</div>
                             <div @click="sort()" class="sort">
                                 <i class="fa-solid fa-arrow-up-wide-short" v-if="sortFlag==2"></i><!-- 由低至高 -->
                                 <i class="fa-solid fa-arrow-down-wide-short" v-else></i><!-- 由高至低 -->
@@ -198,7 +198,7 @@
                 <i id='fr' class="fa-solid fa-arrows-rotate" @click="spinRefresh()"></i>
                 <div class="content-control">
                     <div class="content-box" 
-                    v-if="obj.title.includes(keyword)" 
+                    v-if="obj.title.includes(keyword) && (filterName=='all' || filterName==obj.tag)" 
                     v-for="obj in product" 
                     @click="openItem(obj.id,obj.title,obj.price,obj.img2,obj.intro,obj.mail,obj.key)">
                         <img :src="obj.img1" alt="">

@@ -157,25 +157,6 @@ window.onload=function(){
                     }
                 })
             },
-            // 刷新
-            getFilter(){
-                const url='https://script.google.com/macros/s/AKfycbyVUGhiW_XinYJtbGDWzAF3jbFFEyot1G7jNKX0kCl1ISmPb2gKp1FsMxVd4S2Q_8cp/exec';
-                var config={
-                    method:"GET",
-                    redirect: 'follow'
-                }
-                fetch(url,config)
-                .then(resp=>resp.json())
-                .then(resp=>{
-                    this.filterData=resp;
-                })
-            },
-            doFilter(){
-                if(this.filterName=='all') this.product=this.allData;
-                else this.product=this.filterData[this.filterName]
-                if(this.sortFlag==1) this.product.sort((a,b)=>b.price-a.price);
-                else this.product.sort((a,b)=>a.price-b.price);
-            },
             showFilter(){
                 var target = document.getElementById('filterBar');
                 var fil =document.getElementById('fil');
@@ -323,7 +304,6 @@ window.onload=function(){
             },
             refresh(flag){
                 this.getProduct(flag);
-                this.getFilter();
                 this.getOwner();
                 this.getForum();
                 this.sort(); // 必要存在
@@ -478,7 +458,6 @@ window.onload=function(){
     })
     vm.alert('歡迎蒞臨本頁面','check');
     vm.getProduct();
-    vm.getFilter();
     vm.getForum();
     //ToolDisabled(); // --> 正式上架時，記得關閉。
 }
