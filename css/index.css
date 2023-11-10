@@ -612,7 +612,7 @@ body{
     top:10px;
 }
 .forum-spin{
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     font-size: 28px;

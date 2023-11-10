@@ -320,6 +320,7 @@ window.onload=function(){
                 var msgScroll= document.getElementById('msgScroll');
                 if(msgScroll.scrollTop==0) {
                     this.alert('刷新論壇','warn');
+                    document.getElementById('forum-spin').style='display:flex;';
                     msgScroll.classList.add('content-control2-refresh');
                     this.getForum('auto');
                 }
@@ -430,6 +431,7 @@ window.onload=function(){
                     if(flag=='auto') {
                         var msgScroll= document.getElementById('msgScroll');
                         this.alert('刷新成功','check');
+                        document.getElementById('forum-spin').style='display:none;';
                         msgScroll.classList.remove('content-control2-refresh');
                     }
                 })
