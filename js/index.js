@@ -51,6 +51,7 @@ window.onload=function(){
             sortFlag:1,
             keyword:'',
             forumEnabled:true,
+            forgetData:''
         },
         methods:{
             autoLogin(){
@@ -452,6 +453,29 @@ window.onload=function(){
             },
             toggleMenu(index){
                 document.getElementById('menu'+index).classList.toggle('menuShow');
+            },
+            forgetUser(){
+                if(this.forgetData=='' || this.forgetData.trim()=='') this.alert('上傳資料不可為空','error');
+                else if(confirm('確認找回密碼？')){
+                    this.alert('傳送資料至信箱中，請稍候','warn')
+                    const url='https://script.google.com/macros/s/AKfycbw3h_s_pLVZifHZ3ZLBDiAodKZXyyxWDSIt04GI2U_u4aSXg4UlKsp9RAL8Eu_ckoVt/exec';
+                    var formData=new FormData();
+                    formData.append('user',this.forgetData);
+                    var config={
+                        method:"POST",
+                        body:formData,
+                        redirect: 'follow'
+                    }
+                    fetch(url,config)
+                    .then(resp=>resp.text())
+                    .then(resp=>{
+                        if(resp=='success'){
+                            this.alert('資料已傳送至信箱中','check');
+                            this.loginPageIndex=1;
+                        }
+                        else this.alert('資料傳送失敗','error');
+                    })
+                }
             }
         }
     })
