@@ -320,6 +320,7 @@ window.onload=function(){
                 var msgScroll= document.getElementById('msgScroll');
                 if(msgScroll.scrollTop==0) {
                     this.alert('刷新論壇','warn');
+                    msgScroll.classList.add('content-control2-refresh');
                     this.getForum('auto');
                 }
             },
@@ -426,7 +427,11 @@ window.onload=function(){
                 .then(resp=>resp.json())
                 .then(resp=>{
                     this.forumItem=resp.reverse();
-                    if(flag=='auto') this.alert('刷新成功','check');
+                    if(flag=='auto') {
+                        var msgScroll= document.getElementById('msgScroll');
+                        this.alert('刷新成功','check');
+                        msgScroll.classList.remove('content-control2-refresh');
+                    }
                 })
             },
             deleteForum(key){

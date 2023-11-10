@@ -230,6 +230,7 @@
                 </div>
             </div>
             <div class="content" v-if="mainPageIndex==1">
+                <div class="forum-spin" id="forum-spin"><i class="fa-solid fa-spinner fa-spin"></i></div>
                 <div class="content-control content-control2" @scroll="msgRefresh()" id="msgScroll">
                     <div class="content-box content-box2" v-for="obj,index in forumItem">
                         <div class="art-date">{{obj.date}}
