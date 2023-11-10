@@ -462,7 +462,7 @@ window.onload=function(){
                 document.getElementById('menu'+index).classList.toggle('menuShow');
             },
             forgetUser(){
-                if(this.forgetData=='' || this.forgetData.trim()=='') this.alert('上傳資料不可為空','error');
+                if(this.forgetData=='' || this.forgetData.trim()=='') this.alert('請勿空白','error');
                 else if(confirm('確認找回密碼？')){
                     this.alert('傳送資料至信箱中，請稍候','warn')
                     const url='https://script.google.com/macros/s/AKfycbw3h_s_pLVZifHZ3ZLBDiAodKZXyyxWDSIt04GI2U_u4aSXg4UlKsp9RAL8Eu_ckoVt/exec';
