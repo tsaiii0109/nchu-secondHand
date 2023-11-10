@@ -122,7 +122,7 @@ body{
     margin: auto auto;
     z-index: 1005;
     background-color: white;
-    border: 1px solid gray;
+    border: 1px solid rgb(214, 214, 214);
     border-radius: 7px;
 }
 .item-intro2{
@@ -616,13 +616,21 @@ body{
 }
 .forum-content{
     width: 80%;
-    height: 300px;
+    height: 220px;
     margin: 0 auto;
     display: block;
     margin-top: 15px;
     margin-bottom: 50px;
     padding: 5px;
     font-size: 16px;
+}
+.forum-detail{
+    width: 80%;
+    margin: 0 auto;
+}
+.forum-detail-p{
+    line-height: 2;
+    margin-top: 10px;
 }
 .forum-form{
     display: block;

@@ -51,7 +51,8 @@ window.onload=function(){
             sortFlag:1,
             keyword:'',
             forumEnabled:true,
-            forgetData:''
+            forgetData:'',
+            currentTime:new Date().toLocaleDateString()
         },
         methods:{
             autoLogin(){
