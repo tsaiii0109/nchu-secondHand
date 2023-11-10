@@ -163,7 +163,6 @@ window.onload=function(){
                 var fil =document.getElementById('fil');
                 fil.classList.toggle('showRadio')
                 target.classList.toggle('showBar');
-                console.log('show')
             },
             openItem(id,title,price,img,intro,mail,key){
                 this.product_intro={

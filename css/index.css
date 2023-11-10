@@ -403,6 +403,7 @@ body{
     font-size: 14px;
     position: absolute;
     bottom: -75px;
+    left: 0;
     z-index: 1003;
 }
 .showBar{
@@ -418,14 +419,18 @@ body{
     transition: 0.75s;
     padding-top: 5px;
     padding-left: 5px;
+    padding-bottom: 5px;
 }
 .filterBar>div>div{
     width: 25%;
     height: 30px;
-    line-height: 1.6;
+    line-height: 30px;
 }
 .showRadio{
     display: flex !important;
+}
+.showRadio>div{
+    overflow: hidden;
 }
 .list{
     width: 80%;
