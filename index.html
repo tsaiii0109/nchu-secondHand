@@ -201,7 +201,7 @@
                     <div class="mpLogo">NCHU</div>
                     <div class="search">
                         <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" v-model="keyword" placeholder="輸入關鍵字查詢商品">
+                        <input type="text" v-model="keyword" :placeholder="placeholder">
                     </div>
                     <div class="filter" @click="showFilter()"><i class="fa-solid fa-filter"></i></div>
                     <div class="filterBar" id="filterBar">
@@ -240,7 +240,7 @@
             <div class="content" v-if="mainPageIndex==1">
                 <div class="forum-spin" id="forum-spin"><i class="fa-solid fa-spinner fa-spin"></i></div>
                 <div class="content-control content-control2" @scroll="msgRefresh()" id="msgScroll">
-                    <div class="content-box content-box2" v-for="obj,index in forumItem">
+                    <div class="content-box content-box2" v-for="obj,index in forumItem" v-if="obj.user.includes(keyword) || obj.content.includes(keyword) || keyword==''">
                         <div class="art-date">{{obj.date}}
                             <i v-if="loginData.user==obj.user" @click="toggleMenu(index)" class="fa-solid fa-ellipsis-vertical menu"></i>
                             <div v-if="loginData.user==obj.user" class="menuBox" :id="'menu'+index">

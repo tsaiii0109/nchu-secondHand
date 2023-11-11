@@ -55,6 +55,7 @@ window.onload=function(){
             forgetData:'',
             currentTime:new Date().toLocaleDateString(),
             isJsonFlag:false,
+            placeholder:'輸入關鍵字查詢商品'
         },
         methods:{
             autoLogin(){
@@ -193,9 +194,13 @@ window.onload=function(){
             main(){
                 this.mainPageIndex=0;
                 this.closeItem();
+                this.keyword='';
+                this.placeholder='輸入關鍵字查詢商品'
             },
             openForum(){
                 this.mainPageIndex=1;
+                this.keyword='';
+                this.placeholder='關鍵字查詢作者或留言'
             },
             openWindow(index){
                 this.openIndex=index;
