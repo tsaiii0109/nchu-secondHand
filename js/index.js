@@ -551,7 +551,7 @@ window.onload=function(){
                 }
                 if(method==2){
                     if(ps<0) box.style.left=(+ps+337.5)+"px";
-                    else box.style.left ='-675px';
+                    else box.style.left =-(337.5*(length-1))+'px';
                 }
             },
         }
