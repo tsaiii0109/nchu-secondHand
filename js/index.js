@@ -287,7 +287,9 @@ window.onload=function(){
                     .then(resp=>{
                        if(resp=='預約成功'){
                             this.alert('預約成功！','check');
-                            this.refresh();
+                            setTimeout(() => { // 延遲刷新
+                                this.refresh();
+                            }, 250);
                         }
                         else this.alert('預約失敗','error');
                     })
