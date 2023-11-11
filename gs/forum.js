@@ -6,7 +6,8 @@ function doGet() {
     output.push({
       user:datas[i][0],
       content:datas[i][1],
-      date:datas[i][2].toLocaleDateString()
+      date:datas[i][2].toLocaleDateString(),
+      key:datas[i][3]
     })
   }
   return ContentService.createTextOutput(JSON.stringify(output)).setMimeType(ContentService.MimeType.JSON);
@@ -16,6 +17,7 @@ function doPost(e){
   var user =param.user;
   var content=param.content;
   var date =new Date().toLocaleDateString();
+  var key = new Date().getTime();
   if(user=='' || content=='') return ContentService.createTextOutput('failed').setMimeType(ContentService.MimeType.TEXT);
   else{
     var html='您於 '+date+' 在興大二手拍發布了一則留言：<br>'+content;
@@ -27,7 +29,7 @@ function doPost(e){
     }catch(e){
       return ContentService.createTextOutput('無效電子信箱').setMimeType(ContentService.MimeType.TEXT);
     }
-    sheet.appendRow([user,content,date]);
+    sheet.appendRow([user,content,date,key]);
     return ContentService.createTextOutput('success').setMimeType(ContentService.MimeType.TEXT);
   }
 }

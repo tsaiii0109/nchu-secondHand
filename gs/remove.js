@@ -1,5 +1,5 @@
-var sheet =SpreadsheetApp.openById('1i03SvdrmkbKigXnAipdOKj8wdEz91rkeq9iA9KtkBxI').getSheetByName('product');
-var reserve =SpreadsheetApp.openById('10yUicjKgTzBtOCsLuUB6Jl581yQd4d9hnKBhfLPpA1A').getSheetByName('reserve');
+var sheet =SpreadsheetApp.openById('1_wamUoxajfCscy369v4Q2iCpTvIg41QrGZYKkPHo8is').getSheetByName('product');
+var reserve =SpreadsheetApp.openById('1QUihl3Fvsrh9oqxY9yqlPTxO-nAM1XgCEZoyNeYLTzI').getSheetByName('reserve');
 var datas=sheet.getRange('G1:G'+sheet.getLastRow()).getValues();
 var redatas =reserve.getDataRange().getValues();
 function doPost(e) {

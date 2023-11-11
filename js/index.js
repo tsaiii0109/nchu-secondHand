@@ -83,11 +83,11 @@ window.onload=function(){
             changeLoginIndex(index){
                 this.loginPageIndex=index;
             },
-            register(){
+            register(){ // 完成
                 if(this.registerData.user=='' || this.registerData.password=='') this.alert('請勿空白','error');
                 else{
                     this.alert('註冊中，請稍候','warn');
-                    const url='https://script.google.com/macros/s/AKfycbxi_yFk9qK4uV2xlUlu7Q3BDNcQaDYWO1XaTeqSJ815qw5KunriNkJmMHbt1hK38HfU2A/exec';
+                    const url='https://script.google.com/macros/s/AKfycbx2t2A8HXmH6LoFs8LvjQwUoP84Lt0nZtOBaq4Lo5Gy29i3sBmXsJgc2k9yOPTKz4YA/exec';
                     var formData=new FormData();
                     formData.append('user',this.registerData.user);
                     formData.append('password',this.registerData.password);
@@ -107,11 +107,11 @@ window.onload=function(){
                     })
                 }
             },
-            login(){
+            login(){ // 完成
                 if(this.loginData.user=='' || this.loginData.password=='' || this.loginData.code=='') this.alert('請勿空白','error');
                 else if(!this.loginSuccess){ // 阻擋二次驗證
                     this.alert('驗證中，請稍候','warn');
-                    const url='https://script.google.com/macros/s/AKfycbyYJ0rWfG0aJhLLEu06BWXIDJrWAmtiAfPLv-eSvW8_TjlmWniiVb15u5sHhQo2hxYZ/exec';
+                    const url='https://script.google.com/macros/s/AKfycbxzc-Y24hMPll7xajuCAZAw32Ol3JGtccHpmhKy7BHex9fyh_KmbzYxAeuvJIu_h6Cj/exec';
                     var formData=new FormData();
                     formData.append('user',this.loginData.user);
                     formData.append('password',this.loginData.password);
@@ -138,8 +138,8 @@ window.onload=function(){
                 }
             },
             // 刷新
-            getProduct(flag){
-                const url='https://script.google.com/macros/s/AKfycbxiOOtOJpveUq87GXIOw2ZwiW0Va7zyVr00T0j_vJItlUVrTNmNYFyUxGdWGpWKRduu/exec';
+            getProduct(flag){ // 完成
+                const url='https://script.google.com/macros/s/AKfycbwZKoSuxANAEYGfHdvy7J3NwOrtbVpjJIWFIXL4bjcG6vzaGnfbxl95vDTJvorJzbMiPg/exec';
                 var config={
                     method:"GET",
                     redirect: 'follow'
@@ -200,11 +200,11 @@ window.onload=function(){
             openWindow(index){
                 this.openIndex=index;
             },
-            removeItem(key,title,price){
+            removeItem(key,title,price){ // 完成
                 if(confirm('確認下架商品？') && key!=undefined && key!=''){
                     this.removeEnabled=false;
                     this.alert('下架中，請稍候','warn');
-                    const url='https://script.google.com/macros/s/AKfycbzFAAi_7PNm3hhE9In_m6Ga5mKF72nHEj8DqB3fynpZpADdHFMg0h_6m7oJShlyV7BaNA/exec';
+                    const url='https://script.google.com/macros/s/AKfycbxTLLxxmJXJYC7z3ZaVeaSF3xbtxWPwZ530j5UjjITgqfPLT0nncpB3wpR7mDGP6hgB/exec';
                     var formData=new FormData();
                     formData.append('seller',this.loginData.user);
                     formData.append('key',key);
@@ -227,7 +227,7 @@ window.onload=function(){
                     })
                 }
             },
-            addItem(){
+            addItem(){ // 完成
                 if(this.uploadItem.title=='' || this.uploadItem.price=='' || this.uploadItem.intro=='' || this.uploadItem.img1=='' || this.uploadItem.img2=='' || this.uploadItem.mail=='' || this.uploadItem.tag==''){
                     this.alert('不可空白','error');
                 }
@@ -237,7 +237,7 @@ window.onload=function(){
                 else if(confirm('確認上架？')){
                     this.uploadEnabled=false; // 鎖定上架功能
                     this.alert('上架中，請稍候','warn');
-                    const url='https://script.google.com/macros/s/AKfycbwC-md8nsJr94V3X6hO8eL-v9DvARtDhDHHdfRG9X0KxXL68WUNYX8BloY0iECAhBX8/exec';
+                    const url='https://script.google.com/macros/s/AKfycbx8XijGo-r-Yu9aIbL8F4ySPq-NqBCs35ISpf0T-hWM9ULTk5apA80AehVSoEE0Zrrwkg/exec';
                     var formData=new FormData();
                     formData.append('title',this.uploadItem.title);
                     formData.append('price',this.uploadItem.price);
@@ -265,10 +265,10 @@ window.onload=function(){
                 }
                 
             },
-            reserve(title,img,price,intro,mail,key){
+            reserve(title,img,price,intro,mail,key){ // 完成
                 if(confirm('確認預約？')){
                     this.alert('預約中，請稍候','warn');
-                    const url='https://script.google.com/macros/s/AKfycbxDab6_w5CG-6DePP7ZJe8KrUxs3AR6Ce2x4A5T4jcB3oUsEKjCgVQclIKez08J1gk_/exec';
+                    const url='https://script.google.com/macros/s/AKfycbzaiaKQuSJXipu-K3vv8NaD5WyLQ6yk4VbXRjcVq_YlWfdE_-DVGxHHn71_QzlJSfbG/exec';
                     var formData=new FormData();
                     formData.append('buyer',this.loginData.user);
                     formData.append('seller',mail);
@@ -294,8 +294,8 @@ window.onload=function(){
                 }
             },
             // 刷新
-            getOwner(){
-                const url='https://script.google.com/macros/s/AKfycbwso7JZ0FHAr7XL6dts4-asR_jD8imQN3LPfumYi_AbsKAjKk_i0CI9ePwxgtAtHLV35Q/exec';
+            getOwner(){ // 完成
+                const url='https://script.google.com/macros/s/AKfycbyIcMtdiJkoFtGkRHxW8nDMtfapjl7dTreczTnyJrM6R_WDDkHxSMldTr3W7kSpHcEnAg/exec';
                 var formData=new FormData();
                 formData.append('mail',this.loginData.user);
                 var config={
@@ -441,12 +441,12 @@ window.onload=function(){
                     this.alert('圖片上傳完畢','check');
                 }
             },
-            uploadForum(){
+            uploadForum(){ // 完成
                 if(this.forumContent=='' && this.forumContent.trim()=='') this.alert('上傳資料不可為空','error');
                 else if(confirm('確認發布？')){
                     this.forumEnabled=false;
                     this.alert('發布中，請稍候','warn');
-                    const url='https://script.google.com/macros/s/AKfycbxqzW2ldcPsa0s5UoVAnbTSFQBWSGN7BeCzFinDUm0JAAqPZr3tuBLGD5X1o8tg3uoEIw/exec';
+                    const url='https://script.google.com/macros/s/AKfycbwDJrM4zdqDMqky9JI9t6bR5kpKbg6iElhzZhYJNom_aO5qjLAcfYSe5H9q870p4sXWlQ/exec';
                     var formData=new FormData();
                     formData.append('user',this.loginData.user);
                     formData.append('content',this.forumContent);
@@ -468,8 +468,8 @@ window.onload=function(){
                     })
                 }
             },
-            getForum(flag){
-                const url='https://script.google.com/macros/s/AKfycbxqzW2ldcPsa0s5UoVAnbTSFQBWSGN7BeCzFinDUm0JAAqPZr3tuBLGD5X1o8tg3uoEIw/exec';
+            getForum(flag){ // 完成
+                const url='https://script.google.com/macros/s/AKfycbwDJrM4zdqDMqky9JI9t6bR5kpKbg6iElhzZhYJNom_aO5qjLAcfYSe5H9q870p4sXWlQ/exec';
                 var config={
                     method:"GET",
                     redirect: 'follow'
@@ -486,10 +486,10 @@ window.onload=function(){
                     }
                 })
             },
-            deleteForum(key){
+            deleteForum(key){ // 完成
                 if(confirm('確認刪除留言？')){
                     this.alert('刪除留言中，請稍候','warn')
-                    const url='https://script.google.com/macros/s/AKfycbwUV5fWtIq3X92X_zVvHJMjAssRLCv905NKcAAlF0ktci1IauMYw_drskuLeSX8LSwwtg/exec';
+                    const url='https://script.google.com/macros/s/AKfycbxn-iC-Gmod1VtShykPyWoUDZ-HozlJDq225F2MYbJFtpgmkmpy9AZHWTAkqLkLhQ89dw/exec';
                     var formData=new FormData();
                     formData.append('key',key);
                     var config={
@@ -511,11 +511,11 @@ window.onload=function(){
             toggleMenu(index){
                 document.getElementById('menu'+index).classList.toggle('menuShow');
             },
-            forgetUser(){
+            forgetUser(){ // 完成
                 if(this.forgetData=='' || this.forgetData.trim()=='') this.alert('請勿空白','error');
                 else if(confirm('確認找回密碼？')){
                     this.alert('傳送資料至信箱中，請稍候','warn')
-                    const url='https://script.google.com/macros/s/AKfycbw3h_s_pLVZifHZ3ZLBDiAodKZXyyxWDSIt04GI2U_u4aSXg4UlKsp9RAL8Eu_ckoVt/exec';
+                    const url='https://script.google.com/macros/s/AKfycby7hagxJLQTtjbGTi11SxEFq9fKIHcO0oRzTOJNQPeq_fsj3jK5jjC9fffva1U4ilPjsA/exec';
                     var formData=new FormData();
                     formData.append('user',this.forgetData);
                     var config={

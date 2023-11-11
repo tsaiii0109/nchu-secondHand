@@ -7,7 +7,7 @@ function doPost(e) {
     if(user.includes('mail.nchu.edu.tw') || user.includes('nchu.edu.tw') || user.includes('dragon.nchu.edu.tw') || user.includes('foreign')){
       if(checkRepeat(user)) return ContentService.createTextOutput('使用者已存在').setMimeType(ContentService.MimeType.TEXT);
       else{
-        var code = (new Date().getTime())/1000;
+        var code = (new Date().getTime());
         var html ='登入帳號:'+user+'<br>密碼：'+password+'<br>您的登入驗證識別碼為：'+code
         try{
           MailApp.sendEmail(user,'中興大學二手拍賣APP註冊驗證碼',{},{
