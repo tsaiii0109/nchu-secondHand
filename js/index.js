@@ -27,16 +27,17 @@ window.onload=function(){
                 id:'',
                 title:'',
                 price:'',
-                img:'',
+                img:{},
                 intro:'',
-                mail:''
+                mail:'',
+                img1:''
             },
             uploadItem:{
                 title:'',
                 price:'',
                 intro:'',
                 img1:'',
-                img2:'',
+                img2:{},
                 mail:'',
                 tag:''
             },
@@ -52,7 +53,8 @@ window.onload=function(){
             keyword:'',
             forumEnabled:true,
             forgetData:'',
-            currentTime:new Date().toLocaleDateString()
+            currentTime:new Date().toLocaleDateString(),
+            isJsonFlag:false,
         },
         methods:{
             autoLogin(){
@@ -164,17 +166,26 @@ window.onload=function(){
                 fil.classList.toggle('showRadio')
                 target.classList.toggle('showBar');
             },
-            openItem(id,title,price,img,intro,mail,key){
+            openItem(id,title,price,img,intro,mail,key,img1){
                 this.product_intro={
                     id:id,
                     title:title,
                     price:price,
-                    img:img,
+                    img:JSON.parse(img),
                     intro:intro,
                     mail:mail,
-                    key:key
+                    key:key,
+                    img1:img1
                 }
                 this.openIndex=1;
+            },
+            isJSON(str){
+                try {
+                    JSON.parse(str);
+                } catch (e) {
+                    return false;
+                }
+                return true;
             },
             closeItem(){
                 this.openIndex=0;
@@ -232,7 +243,7 @@ window.onload=function(){
                     formData.append('price',this.uploadItem.price);
                     formData.append('intro',this.uploadItem.intro);
                     formData.append('img1',this.uploadItem.img1);
-                    formData.append('img2',this.uploadItem.img2);
+                    formData.append('img2',JSON.stringify(this.uploadItem.img2));
                     formData.append('mail',this.uploadItem.mail);
                     formData.append('tag',this.uploadItem.tag);
                     var config={
@@ -349,22 +360,36 @@ window.onload=function(){
                 this.uploadItem.price='';
                 this.uploadItem.intro='';
                 this.uploadItem.img1='';
-                this.uploadItem.img2='';
+                this.uploadItem.img2=[];
                 this.uploadItem.tag='';
             },
-            uploadFile(option){
+            uploadFile(){
                 this.alert('圖片上傳中，請稍候','warn');
-                var item = option==1?'upload1':'upload2';
-                var target =option==1?'img1':'img2'
-                if(document.getElementById(item)!=null){
-                    var file = document.getElementById(item).files[0];
+                if(document.getElementById('upload1')!=null){
+                    var file = document.getElementById('upload1').files[0];
                     var reader = new FileReader();
                     if (file) reader.readAsDataURL(file);
                     reader.addEventListener("load", () => {
-                        if(file.size>5000000) this.alert('檔案大於 5MB 請重新上傳。','error');
-                        else this.compressImg(reader.result,target);
+                        if(file.size>1000000) this.alert('檔案大於 1MB 請重新上傳。','error');
+                        else this.compressImg(reader.result,'img1');
                     }, false);
                 
+                }
+            },
+            uploadFiles(option,index){
+                if(option != 'auto') var index=0;
+                this.alert('圖片上傳中，請稍候','warn');
+                if(document.getElementById('upload2')!=null){
+                    var files = document.getElementById('upload2').files;
+                    var reader = new FileReader();
+                    var file = files[index];
+                    if (file) reader.readAsDataURL(file);
+                    reader.addEventListener("load", () => {
+                        if(file.size>1000000) this.alert('檔案大於 1MB 請重新上傳。','error');
+                        else if(file!=undefined && file!=null && index<3) this.compressImgs(reader.result,'img2',index);
+                        else this.alert('超過上傳上限三張圖！','warn');
+                        
+                    }, false);     
                 }
             },
             compressImg(item,target){
@@ -388,6 +413,31 @@ window.onload=function(){
                     ctx.drawImage(img,0,0,img.width,img.height);
                     // 壓縮圖檔
                     this.uploadItem[target]= canvas.toDataURL('image/jpeg',0.9);
+                    this.alert('圖片上傳完畢','check');
+                }
+            },
+            compressImgs(item,target,index){
+                var img =new Image();
+                img.src=item;
+                document.body.appendChild(img);
+                img.onload=()=>{
+                    // 取得原始長寬
+                    var width=img.offsetWidth;
+                    var height=img.offsetHeight;
+                    document.body.removeChild(img);
+                    // 調整大小
+                    img.width=width>=510?510:width;
+                    img.height=width>=510?height*(510/width):height;
+                    // 設定畫布大小
+                    var canvas = document.getElementById('canvas');
+                    canvas.width=img.width;
+                    canvas.height=img.height;
+                    // 開始繪製
+                    var ctx =canvas.getContext('2d');
+                    ctx.drawImage(img,0,0,img.width,img.height);
+                    // 壓縮圖檔
+                    this.uploadItem[target][index]= canvas.toDataURL('image/jpeg',0.9);
+                    this.uploadFiles('auto',++index)
                     this.alert('圖片上傳完畢','check');
                 }
             },
@@ -483,7 +533,18 @@ window.onload=function(){
                         else this.alert('資料傳送失敗','error');
                     })
                 }
-            }
+            },
+            contentImg(id,arr,method){
+                var box =document.getElementById(id);
+                var length= Object.keys(arr).length;
+                var ps = window.getComputedStyle(box).getPropertyValue("left").split("px")[0];
+                if(method==1 && ps!=-(337.5*(length-1))){
+                   box.style.left=(ps-337.5)+"px";
+                }
+                if(method==2 && ps<0){
+                    box.style.left=(+ps+337.5)+"px";
+                }
+            },
         }
     })
     vm.alert('歡迎蒞臨本頁面','check');

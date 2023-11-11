@@ -130,7 +130,15 @@
         <div class="mainPage" v-if="loginSuccess">
             <div class="item-intro it" v-if="openIndex==1">
                 <i @click="closeItem()" class="fa-solid fa-xmark mark"></i>
-                <img :src="product_intro.img" alt="">
+                <div class="img_car_all">
+                    <div class="img_car" :id="product_intro.id">
+                        <img v-for="obj in product_intro.img" :src="obj" alt="">
+                    </div>
+                    <div class="arrow">
+                        <img src="img/down.webp" alt="" class="right" @click="contentImg(product_intro.id,product_intro.img,1)">
+                        <img src="img/down.webp" alt="" class="left" @click="contentImg(product_intro.id,product_intro.img,2)">
+                    </div>
+                </div>
                 <h1>{{product_intro.title}}</h1>
                 <p>${{product_intro.price}}</p>
                 <div class="ct-intro">
@@ -139,7 +147,7 @@
                 </div>
                 <div class="item-intro-footer">
                     <div class="intro-total">合計：${{product_intro.price}}</div>
-                    <div class="item-intro-btn" @click="reserve(product_intro.title,product_intro.img,product_intro.price,product_intro.intro,product_intro.mail,product_intro.key)">預約商品</div>
+                    <div class="item-intro-btn" @click="reserve(product_intro.title,product_intro.img1,product_intro.price,product_intro.intro,product_intro.mail,product_intro.key)">預約商品</div>
                 </div>
             </div>
             <div class="item-intro2" v-if="openIndex==2">
@@ -150,8 +158,8 @@
                     <div class="shop-title"><div class="stt">商品介紹：</div><br>
                         <textarea v-model="uploadItem.intro"></textarea>
                     </div>
-                    <div class="shop-title"><div class="stt">商品縮圖(170x170px 以上):</div><input type='file' accept="image/jpg,image/png,image/jpeg" class="file" id="upload1" v-on:change="uploadFile(1)"><br></div>
-                    <div class="shop-title"><div class="stt">商品縮圖(170x340px 以上):</div><input type='file' accept="image/jpg,image/png,image/jpeg" class="file" id="upload2" v-on:change="uploadFile(2)"><br></div>
+                    <div class="shop-title"><div class="stt">商品縮圖(1:1、最大1MB):</div><input type='file' accept="image/jpg,image/png,image/jpeg" class="file" id="upload1" v-on:change="uploadFile()"><br></div>
+                    <div class="shop-title"><div class="stt">商品縮圖(1:2、可三張、最大各1MB):</div><input type='file' accept="image/jpg,image/png,image/jpeg" class="file" id="upload2" v-on:change="uploadFiles()" multiple><br></div>
                     <div class="shop-title">商品標籤:
                         <select name="" id="" v-model="uploadItem.tag">
                             <option value="書籍">書籍</option>
@@ -220,7 +228,7 @@
                     <div class="content-box" 
                     v-if="obj.title.includes(keyword) && (filterName=='all' || filterName==obj.tag)" 
                     v-for="obj in product" 
-                    @click="openItem(obj.id,obj.title,obj.price,obj.img2,obj.intro,obj.mail,obj.key)">
+                    @click="openItem(obj.id,obj.title,obj.price,obj.img2,obj.intro,obj.mail,obj.key,obj.img1)">
                         <img :src="obj.img1" alt="">
                         <div class="pin"></div>
                         <h1>{{obj.title}}</h1>

@@ -145,6 +145,7 @@ body{
     left:5px;
     font-size: 26px;
     color: gray;
+    z-index: 1003;
 }
 .mark:hover{
     cursor: pointer;
@@ -695,5 +696,54 @@ body{
     text-shadow: 2px 2px 2px gray;
 }
 #fr:hover{
+    cursor: pointer;
+}
+.img_car_all{
+    width: 337.5px;
+    height: 168.75px;
+    position: relative;
+    overflow: hidden;  
+}
+.img_car{
+    display: flex;
+    position: absolute;
+    left: 0;
+}
+.img_car>img{
+    width: 337.5px;
+    height: 168.75px;
+    z-index: 1002;
+}
+.arrow>img{
+    z-index: 1006;
+    position: absolute;
+    animation: jump;
+    animation-duration: 1.3s;
+    animation-iteration-count: infinite;
+}
+@keyframes jump{
+    0%{
+        width: 47.59px;
+    }
+    50%{
+        width: 52px;
+    }
+    100%{
+        width: 47.59px;
+    }
+}
+.left{
+    top:60px;
+    left: -5px;
+    width: 6%;
+    transform: rotate(90deg);
+}
+.right{
+    top:60px;
+    right: -5px;
+    width: 6%;
+    transform: rotate(270deg);
+}
+.left:hover,.right:hover{
     cursor: pointer;
 }
