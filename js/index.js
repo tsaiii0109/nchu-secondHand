@@ -370,7 +370,7 @@ window.onload=function(){
                     var reader = new FileReader();
                     if (file) reader.readAsDataURL(file);
                     reader.addEventListener("load", () => {
-                        if(file.size>2000000) this.alert('檔案大於 2MB 請重新上傳。','error');
+                        if(file.size>3000000) this.alert('檔案大於 3MB 請重新上傳。','error');
                         else this.compressImg(reader.result,'img1');
                     }, false);
                 
@@ -385,7 +385,7 @@ window.onload=function(){
                     var file = files[index];
                     if (file) reader.readAsDataURL(file);
                     reader.addEventListener("load", () => {
-                        if(file.size>2000000) this.alert('檔案大於 2MB 請重新上傳。','error');
+                        if(file.size>3000000) this.alert('檔案大於 3MB 請重新上傳。','error');
                         else if(file!=undefined && file!=null && index<3) this.compressImgs(reader.result,'img2',index);
                         else this.alert('超過上傳上限三張圖！','warn');
                         
