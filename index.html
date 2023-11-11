@@ -231,7 +231,7 @@
                     @click="openItem(obj.id,obj.title,obj.price,obj.img2,obj.intro,obj.mail,obj.key,obj.img1)">
                         <img :src="obj.img1" alt="">
                         <div class="pin"></div>
-                        <h1>{{obj.title}}</h1>
+                        <h1 v-text="obj.title"></h1>
                         <p>${{obj.price}}</p>
                         <div class="re">預約數：{{obj.per}}</div>
                     </div>
@@ -240,7 +240,9 @@
             <div class="content" v-if="mainPageIndex==1">
                 <div class="forum-spin" id="forum-spin"><i class="fa-solid fa-spinner fa-spin"></i></div>
                 <div class="content-control content-control2" @scroll="msgRefresh()" id="msgScroll">
-                    <div class="content-box content-box2" v-for="obj,index in forumItem" v-if="obj.user.includes(keyword) || obj.content.includes(keyword) || keyword==''">
+                    <div class="content-box content-box2" 
+                    v-for="obj,index in forumItem" 
+                    v-if="obj.user.includes(keyword) || obj.content.includes(keyword) || keyword==''">
                         <div class="art-date">{{obj.date}}
                             <i v-if="loginData.user==obj.user" @click="toggleMenu(index)" class="fa-solid fa-ellipsis-vertical menu"></i>
                             <div v-if="loginData.user==obj.user" class="menuBox" :id="'menu'+index">
@@ -249,11 +251,9 @@
                         </div>
                         <div class="artist">
                             <img src="ico/apple-icon-57x57.png" alt="">
-                            <p>{{obj.user}}</p>
+                            <p v-text="obj.user"></p>
                         </div>
-                        <div class="artist-c">
-                           {{obj.content}}
-                        </div>
+                        <div class="artist-c" v-text="obj.content"></div>
                     </div>
                 </div>
             </div>

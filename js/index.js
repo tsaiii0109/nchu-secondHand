@@ -545,11 +545,13 @@ window.onload=function(){
                 var box =document.getElementById(id);
                 var length= Object.keys(arr).length;
                 var ps = window.getComputedStyle(box).getPropertyValue("left").split("px")[0];
-                if(method==1 && ps!=-(337.5*(length-1))){
-                   box.style.left=(ps-337.5)+"px";
+                if(method==1){
+                    if(ps==-(337.5*(length-1))) box.style.left ='0px';
+                    else box.style.left=(ps-337.5)+"px";
                 }
-                if(method==2 && ps<0){
-                    box.style.left=(+ps+337.5)+"px";
+                if(method==2){
+                    if(ps<0) box.style.left=(+ps+337.5)+"px";
+                    else box.style.left ='-675px';
                 }
             },
         }
