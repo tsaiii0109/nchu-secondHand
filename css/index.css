@@ -713,6 +713,7 @@ body{
     width: 337.5px;
     height: 168.75px;
     z-index: 1002;
+    border-radius: 6px 6px 0 0;
 }
 .arrow>img{
     z-index: 1006;
