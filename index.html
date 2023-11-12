@@ -229,7 +229,7 @@
                 <i id='fr' class="fa-solid fa-arrows-rotate" @click="spinRefresh()"></i>
                 <div class="content-control">
                     <div class="content-box" 
-                    v-if="obj.title.includes(keyword) && (filterName=='all' || filterName==obj.tag) || (obj.id).toString().includes(keyword)" 
+                    v-if="(obj.title.includes(keyword) || (obj.id).toString().includes(keyword)) && (filterName=='all' || filterName==obj.tag)" 
                     v-for="obj in product" 
                     @click="openItem(obj.id,obj.title,obj.price,obj.img2,obj.intro,obj.mail,obj.key,obj.img1)">
                         <img :src="obj.img1" alt="">
