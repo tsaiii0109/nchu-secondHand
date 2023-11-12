@@ -167,11 +167,18 @@ body{
 .item-intro>p{
     width: 100%;
     padding-left: 7px;
+    position: relative;
 }
 .intro-total{
     position: absolute;
     bottom: 15px;
     left: 10px;
+}
+.intro_id{
+    position: absolute;
+    right: 10px;
+    bottom: 0;
+    font-size: 12px;
 }
 .ct-intro{
     width: 327.5px;

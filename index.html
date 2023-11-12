@@ -139,8 +139,8 @@
                         <img src="img/down.webp" alt="" class="left" @click="contentImg(product_intro.id,product_intro.img,2)">
                     </div>
                 </div>
-                <h1>{{product_intro.title}}</h1>
-                <p>${{product_intro.price}}</p>
+                <h1 v-text="product_intro.title"></h1>
+                <p>${{product_intro.price}} <span class="intro_id">商品編號：{{product_intro.id}}</span></p>
                 <div class="ct-intro">
                     <p class="ct-intro-title">產品介紹</p>
                     <p class="ct-intro-main">{{product_intro.intro}}</p>
@@ -226,7 +226,7 @@
                 <i id='fr' class="fa-solid fa-arrows-rotate" @click="spinRefresh()"></i>
                 <div class="content-control">
                     <div class="content-box" 
-                    v-if="obj.title.includes(keyword) && (filterName=='all' || filterName==obj.tag)" 
+                    v-if="obj.title.includes(keyword) && (filterName=='all' || filterName==obj.tag) || (obj.id).toString().includes(keyword)" 
                     v-for="obj in product" 
                     @click="openItem(obj.id,obj.title,obj.price,obj.img2,obj.intro,obj.mail,obj.key,obj.img1)">
                         <img :src="obj.img1" alt="">
