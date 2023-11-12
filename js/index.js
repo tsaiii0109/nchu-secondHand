@@ -199,6 +199,7 @@ window.onload=function(){
             },
             openForum(){
                 this.mainPageIndex=1;
+                this.closeItem();
                 this.keyword='';
                 this.placeholder='關鍵字查詢作者或留言'
             },
