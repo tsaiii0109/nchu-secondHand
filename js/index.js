@@ -560,6 +560,13 @@ window.onload=function(){
             copy(item){
                 this.alert('商品編號複製成功','check');
                 navigator.clipboard.writeText(item);
+            },
+            toggleEye(index){
+                var eye  = document.getElementsByClassName('eye_open')[index];
+                var input =document.getElementsByClassName('loginP')[index];
+                var target =eye.classList;
+                target.toString().includes('fa-eye-slash')?target.replace('fa-eye-slash','fa-eye'):target.replace('fa-eye','fa-eye-slash')
+                input.type=='password'?input.type='text':input.type='password';
             }
         }
     })

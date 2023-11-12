@@ -78,13 +78,15 @@
                     <div class="password">
                         <div class="icon"><i class="fa-solid fa-key"></i></div>
                         <div class="loginInput">
-                            <input type="password" placeholder="請輸入密碼" v-model="loginData.password">
+                            <input class="loginP" type="password" placeholder="請輸入密碼" v-model="loginData.password">
+                            <i @click="toggleEye(0)" class="fa-regular fa-eye-slash eye_open"></i>
                         </div>
                     </div>
                     <div class="password">
                         <div class="icon"><i class="fa-solid fa-fingerprint"></i></div>
                         <div class="loginInput">
-                            <input type="password" placeholder="使用者識別碼" v-model="loginData.code">
+                            <input class="loginP" type="password" placeholder="使用者識別碼" v-model="loginData.code">
+                            <i @click="toggleEye(1)" class="fa-regular fa-eye-slash eye_open"></i>
                         </div>
                     </div>
                     <div class="loginBtn" @click="login()">登入</div>
@@ -104,7 +106,8 @@
                     <div class="password">
                         <div class="icon"><i class="fa-solid fa-key"></i></div>
                         <div class="loginInput">
-                            <input type="password" placeholder="請輸入密碼" v-model="registerData.password">
+                            <input class="loginP" type="password" placeholder="請輸入密碼" v-model="registerData.password">
+                            <i @click="toggleEye(0)" class="fa-regular fa-eye-slash eye_open"></i>
                         </div>
                     </div>
                     <div class="loginBtn" @click="register()">註冊</div>
