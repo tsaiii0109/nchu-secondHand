@@ -209,7 +209,7 @@
                     <div class="mpLogo">NCHU</div>
                     <div class="search">
                         <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" v-model="keyword" :placeholder="placeholder" id="search_input" @input="openIndex=0">
+                        <input type="text" v-model="keyword" :placeholder="placeholder" id="search_input" @focus="openIndex=0">
                     </div>
                     <div class="filter" @click="showFilter()"><i class="fa-solid fa-filter"></i></div>
                     <div class="filterBar" id="filterBar">
