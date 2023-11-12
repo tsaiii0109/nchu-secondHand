@@ -208,7 +208,7 @@ window.onload=function(){
             removeItem(key,title,price){ // 完成
                 if(confirm('確認下架商品？') && key!=undefined && key!=''){
                     this.removeEnabled=false;
-                    this.alert('下架中，請稍候','warn',4000);
+                    this.alert('下架中，請稍候','warn',4500);
                     const url='https://script.google.com/macros/s/AKfycbxTLLxxmJXJYC7z3ZaVeaSF3xbtxWPwZ530j5UjjITgqfPLT0nncpB3wpR7mDGP6hgB/exec';
                     var formData=new FormData();
                     formData.append('seller',this.loginData.user);
@@ -370,6 +370,8 @@ window.onload=function(){
                 this.uploadItem.img1='';
                 this.uploadItem.img2=[];
                 this.uploadItem.tag='';
+                document.getElementById('upload1').value='';
+                document.getElementById('upload2').value='';
             },
             uploadFile(){
                 this.alert('圖片上傳中，請稍候','warn');
