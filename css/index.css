@@ -755,3 +755,6 @@ body{
 .left:hover,.right:hover{
     cursor: pointer;
 }
+.copy_icon:hover{
+    cursor: pointer;
+}

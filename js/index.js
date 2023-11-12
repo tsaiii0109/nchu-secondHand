@@ -87,7 +87,7 @@ window.onload=function(){
             register(){ // 完成
                 if(this.registerData.user=='' || this.registerData.password=='') this.alert('請勿空白','error');
                 else{
-                    this.alert('註冊中，請稍候','warn');
+                    this.alert('註冊中，請稍候','warn',3250);
                     const url='https://script.google.com/macros/s/AKfycbx2t2A8HXmH6LoFs8LvjQwUoP84Lt0nZtOBaq4Lo5Gy29i3sBmXsJgc2k9yOPTKz4YA/exec';
                     var formData=new FormData();
                     formData.append('user',this.registerData.user);
@@ -111,7 +111,7 @@ window.onload=function(){
             login(){ // 完成
                 if(this.loginData.user=='' || this.loginData.password=='' || this.loginData.code=='') this.alert('請勿空白','error');
                 else if(!this.loginSuccess){ // 阻擋二次驗證
-                    this.alert('驗證中，請稍候','warn');
+                    this.alert('驗證中，請稍候','warn',3250);
                     const url='https://script.google.com/macros/s/AKfycbxzc-Y24hMPll7xajuCAZAw32Ol3JGtccHpmhKy7BHex9fyh_KmbzYxAeuvJIu_h6Cj/exec';
                     var formData=new FormData();
                     formData.append('user',this.loginData.user);
@@ -208,7 +208,7 @@ window.onload=function(){
             removeItem(key,title,price){ // 完成
                 if(confirm('確認下架商品？') && key!=undefined && key!=''){
                     this.removeEnabled=false;
-                    this.alert('下架中，請稍候','warn');
+                    this.alert('下架中，請稍候','warn',4000);
                     const url='https://script.google.com/macros/s/AKfycbxTLLxxmJXJYC7z3ZaVeaSF3xbtxWPwZ530j5UjjITgqfPLT0nncpB3wpR7mDGP6hgB/exec';
                     var formData=new FormData();
                     formData.append('seller',this.loginData.user);
@@ -241,7 +241,7 @@ window.onload=function(){
                 }
                 else if(confirm('確認上架？')){
                     this.uploadEnabled=false; // 鎖定上架功能
-                    this.alert('上架中，請稍候','warn');
+                    this.alert('上架中，請稍候','warn',3250);
                     const url='https://script.google.com/macros/s/AKfycbx8XijGo-r-Yu9aIbL8F4ySPq-NqBCs35ISpf0T-hWM9ULTk5apA80AehVSoEE0Zrrwkg/exec';
                     var formData=new FormData();
                     formData.append('title',this.uploadItem.title);
@@ -272,7 +272,7 @@ window.onload=function(){
             },
             reserve(title,img,price,intro,mail,key){ // 完成
                 if(confirm('確認預約？')){
-                    this.alert('預約中，請稍候','warn');
+                    this.alert('預約中，請稍候','warn',3250);
                     const url='https://script.google.com/macros/s/AKfycbzaiaKQuSJXipu-K3vv8NaD5WyLQ6yk4VbXRjcVq_YlWfdE_-DVGxHHn71_QzlJSfbG/exec';
                     var formData=new FormData();
                     formData.append('buyer',this.loginData.user);
@@ -329,7 +329,7 @@ window.onload=function(){
             spinRefresh(){
                 var fr =document.getElementById('fr');
                 if(confirm('確認刷新？')){
-                    this.alert('刷新商品列','warn');
+                    this.alert('刷新商品列','warn',3250);
                     fr.classList.add('fa-spin')
                     this.refresh('auto');
                 }
@@ -337,20 +337,21 @@ window.onload=function(){
             msgRefresh(){
                 var msgScroll= document.getElementById('msgScroll');
                 if(msgScroll.scrollTop==0) {
-                    this.alert('刷新論壇','warn');
+                    this.alert('刷新論壇','warn',3000);
                     document.getElementById('forum-spin').style='display:flex;';
                     msgScroll.classList.add('content-control2-refresh');
                     this.getForum('auto');
                 }
             },
-            alert(msg,option){
+            alert(msg,option,interval){
+                if(interval==undefined) interval=1350;
                 clearTimeout(this.alertTimer)
                 this.alertMsgBlock=true;
                 this.alertMsg=msg;
                 this.alertOption=option;
                 this.alertTimer = setTimeout(() => {
                     this.alertMsgBlock=false;
-                }, 3250);
+                }, interval);
             },
             sort(){
                 if(this.sortFlag==1) { //由低至高
@@ -554,6 +555,10 @@ window.onload=function(){
                     else box.style.left =-(337.5*(length-1))+'px';
                 }
             },
+            copy(item){
+                this.alert('商品編號複製成功','check');
+                navigator.clipboard.writeText(item);
+            }
         }
     })
     vm.alert('歡迎蒞臨本頁面','check');
