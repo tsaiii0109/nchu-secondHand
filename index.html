@@ -143,7 +143,7 @@
                 <p>${{product_intro.price}} <span class="intro_id">商品編號：{{product_intro.id}} <i @click="copy(product_intro.id)" class="fa-regular fa-copy copy_icon" title="複製"></i></span></p>
                 <div class="ct-intro">
                     <p class="ct-intro-title">產品介紹</p>
-                    <p class="ct-intro-main">{{product_intro.intro}}</p>
+                    <p class="ct-intro-main" v-text="product_intro.intro"></p>
                 </div>
                 <div class="item-intro-footer">
                     <div class="intro-total">合計：${{product_intro.price}}</div>
