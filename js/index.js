@@ -216,7 +216,7 @@ window.onload=function(){
             removeItem(key,title,price){ // 完成
                 if(confirm('確認下架商品？') && key!=undefined && key!=''){
                     this.removeEnabled=false;
-                    this.alert('下架中，請稍候','warn',4500);
+                    this.alert('下架中，請稍候','warn',10500);
                     const url='https://script.google.com/macros/s/AKfycbxTLLxxmJXJYC7z3ZaVeaSF3xbtxWPwZ530j5UjjITgqfPLT0nncpB3wpR7mDGP6hgB/exec';
                     var formData=new FormData();
                     formData.append('seller',this.loginData.user);
@@ -337,7 +337,7 @@ window.onload=function(){
             spinRefresh(){
                 var fr =document.getElementById('fr');
                 if(confirm('確認刷新？')){
-                    this.alert('刷新商品列','warn',5250);
+                    this.alert('刷新商品列','warn',15250);
                     fr.classList.add('fa-spin')
                     this.refresh('auto');
                 }
