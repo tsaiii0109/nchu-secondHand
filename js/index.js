@@ -337,7 +337,7 @@ window.onload=function(){
             spinRefresh(){
                 var fr =document.getElementById('fr');
                 if(confirm('確認刷新？')){
-                    this.alert('刷新商品列','warn',3250);
+                    this.alert('刷新商品列','warn',5250);
                     fr.classList.add('fa-spin')
                     this.refresh('auto');
                 }
