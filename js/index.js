@@ -504,7 +504,7 @@ window.onload=function(){
                     }
                 })
             },
-            deleteForum(key){ // 完成
+            deleteForum(key,index){ // 完成
                 if(confirm('確認刪除留言？')){
                     this.alert('刪除留言中，請稍候','warn',10000)
                     const url='https://script.google.com/macros/s/AKfycbxn-iC-Gmod1VtShykPyWoUDZ-HozlJDq225F2MYbJFtpgmkmpy9AZHWTAkqLkLhQ89dw/exec';
@@ -523,6 +523,7 @@ window.onload=function(){
                             this.getForum();
                         }
                         else this.alert('刪除失敗','error');
+                        this.toggleMenu(index);
                     })
                 }
             },
