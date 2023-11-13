@@ -61,8 +61,8 @@ window.onload=function(){
             placeholder:'輸入關鍵字查詢商品'
         },
         methods:{
-            autoLogin(){
-                if(localStorage.getItem('user')!='' && localStorage.getItem('user')!=null &&
+            autoLogin(flag){
+                if(flag==undefined && localStorage.getItem('user')!='' && localStorage.getItem('user')!=null &&
                    localStorage.getItem('password')!='' && localStorage.getItem('password')!=null &&
                    localStorage.getItem('code')!='' && localStorage.getItem('code')!=null
                 ){
@@ -154,7 +154,7 @@ window.onload=function(){
                 }
                 fetch(url,config)
                 .then(resp=>{
-                    vm.autoLogin(); // 延遲自動登入
+                    vm.autoLogin(flag); // 延遲自動登入
                     return resp.json();
                 })
                 .then(resp=>{ 
@@ -369,7 +369,7 @@ window.onload=function(){
                 else{ // 由高至低
                     this.product.sort((a,b)=>b.price-a.price);
                     this.sortFlag=1;
-                } 
+                }
             },
             resetUpload(){
                 this.uploadItem.title='';
