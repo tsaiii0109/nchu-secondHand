@@ -249,7 +249,7 @@ window.onload=function(){
                 }
                 else if(confirm('確認上架？')){
                     this.uploadEnabled=false; // 鎖定上架功能
-                    this.alert('上架中，請稍候','warn',3250);
+                    this.alert('上架中，請稍候','warn',10250);
                     const url='https://script.google.com/macros/s/AKfycbx8XijGo-r-Yu9aIbL8F4ySPq-NqBCs35ISpf0T-hWM9ULTk5apA80AehVSoEE0Zrrwkg/exec';
                     var formData=new FormData();
                     formData.append('title',this.uploadItem.title);
