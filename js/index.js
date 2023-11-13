@@ -160,7 +160,7 @@ window.onload=function(){
                 .then(resp=>{ 
                     this.product=resp;
                     this.allData=resp;
-                    this.sort();
+                    this.sort(flag);
                     if(flag=='auto'){
                         var fr =document.getElementById('fr');
                         fr.classList.remove('fa-spin');
@@ -233,7 +233,7 @@ window.onload=function(){
                     .then(resp=>{
                         if(resp=='下架成功'){
                             this.alert('下架成功！','check');
-                            this.refresh();
+                            this.refresh('auto');
                         }
                         else this.alert('下架失敗','error');
                         this.removeEnabled=true;
@@ -269,7 +269,7 @@ window.onload=function(){
                     .then(resp=>{
                         if(resp=='上架成功'){
                             this.alert('上架成功！','check');
-                            this.refresh();
+                            this.refresh('auto');
                             this.resetUpload();
                         }
                         else this.alert('上架失敗','error');
@@ -301,7 +301,7 @@ window.onload=function(){
                        if(resp=='預約成功'){
                             this.alert('預約成功！','check');
                             setTimeout(() => { // 延遲刷新
-                                this.refresh();
+                                this.refresh('auto');
                             }, 250);
                         }
                         else this.alert('預約失敗','error');
@@ -332,7 +332,6 @@ window.onload=function(){
                 this.getProduct(flag);
                 this.getOwner();
                 this.getForum();
-                this.sort(); // 必要存在
             },
             spinRefresh(){
                 var fr =document.getElementById('fr');
@@ -361,8 +360,9 @@ window.onload=function(){
                     this.alertMsgBlock=false;
                 }, interval);
             },
-            sort(){
-                if(this.sortFlag==1) { //由低至高
+            sort(flag){
+                if(flag=='auto') this.product.sort((a,b)=> this.sortFlag==2?a.price-b.price:b.price-a.price);
+                else if(this.sortFlag==1) { //由低至高
                     this.product.sort((a,b)=>a.price-b.price);
                     this.sortFlag=2;
                 }
