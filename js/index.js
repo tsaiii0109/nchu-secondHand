@@ -463,7 +463,7 @@ window.onload=function(){
                 if(this.forumContent=='' && this.forumContent.trim()=='') this.alert('上傳資料不可為空','error');
                 else if(confirm('確認發布？')){
                     this.forumEnabled=false;
-                    this.alert('發布中，請稍候','warn');
+                    this.alert('發布中，請稍候','warn',10000);
                     const url='https://script.google.com/macros/s/AKfycbwDJrM4zdqDMqky9JI9t6bR5kpKbg6iElhzZhYJNom_aO5qjLAcfYSe5H9q870p4sXWlQ/exec';
                     var formData=new FormData();
                     formData.append('user',this.loginData.user);
