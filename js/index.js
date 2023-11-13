@@ -506,7 +506,7 @@ window.onload=function(){
             },
             deleteForum(key){ // 完成
                 if(confirm('確認刪除留言？')){
-                    this.alert('刪除留言中，請稍候','warn')
+                    this.alert('刪除留言中，請稍候','warn',10000)
                     const url='https://script.google.com/macros/s/AKfycbxn-iC-Gmod1VtShykPyWoUDZ-HozlJDq225F2MYbJFtpgmkmpy9AZHWTAkqLkLhQ89dw/exec';
                     var formData=new FormData();
                     formData.append('key',key);
