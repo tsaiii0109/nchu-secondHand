@@ -73,6 +73,9 @@ body{
 .loginInput>.loginP{
     width: 85%;
 }
+.login_load{
+    font-size: 32px;
+}
 .eye_open{
     color: gray;
 }

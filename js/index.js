@@ -6,6 +6,9 @@ window.onload=function(){
         el:'#app',
         data:{
             loginPageIndex:1,
+            loginStart:false,
+            registerStart:false,
+            forgetStart:false,
             openIndex:0,
             mainPageIndex:0,
             loginSuccess:false,
@@ -87,6 +90,7 @@ window.onload=function(){
             register(){ // 完成
                 if(this.registerData.user=='' || this.registerData.password=='') this.alert('請勿空白','error');
                 else{
+                    this.registerStart=true;
                     this.alert('註冊中，請稍候','warn',3250);
                     const url='https://script.google.com/macros/s/AKfycbx2t2A8HXmH6LoFs8LvjQwUoP84Lt0nZtOBaq4Lo5Gy29i3sBmXsJgc2k9yOPTKz4YA/exec';
                     var formData=new FormData();
@@ -105,12 +109,14 @@ window.onload=function(){
                             this.loginPageIndex=1;
                         }
                         else this.alert(resp,'error');
+                        this.registerStart=false;
                     })
                 }
             },
             login(){ // 完成
                 if(this.loginData.user=='' || this.loginData.password=='' || this.loginData.code=='') this.alert('請勿空白','error');
                 else if(!this.loginSuccess){ // 阻擋二次驗證
+                    this.loginStart=true;
                     this.alert('驗證中，請稍候','warn',3250);
                     const url='https://script.google.com/macros/s/AKfycbxzc-Y24hMPll7xajuCAZAw32Ol3JGtccHpmhKy7BHex9fyh_KmbzYxAeuvJIu_h6Cj/exec';
                     var formData=new FormData();
@@ -135,6 +141,7 @@ window.onload=function(){
                             this.getOwner();
                         }
                         else this.alert(resp,'error');
+                        this.loginStart=false;
                     })
                 }
             },
@@ -524,8 +531,9 @@ window.onload=function(){
             },
             forgetUser(){ // 完成
                 if(this.forgetData=='' || this.forgetData.trim()=='') this.alert('請勿空白','error');
-                else if(confirm('確認找回密碼？')){
-                    this.alert('傳送資料至信箱中，請稍候','warn')
+                else{
+                    this.forgetStart=true;
+                    this.alert('傳送資料至信箱中，請稍候','warn',3200)
                     const url='https://script.google.com/macros/s/AKfycby7hagxJLQTtjbGTi11SxEFq9fKIHcO0oRzTOJNQPeq_fsj3jK5jjC9fffva1U4ilPjsA/exec';
                     var formData=new FormData();
                     formData.append('user',this.forgetData);
@@ -542,6 +550,7 @@ window.onload=function(){
                             this.loginPageIndex=1;
                         }
                         else this.alert('資料傳送失敗','error');
+                        this.forgetStart=false;
                     })
                 }
             },

@@ -94,7 +94,10 @@
                             <i @click="toggleEye(1)" class="fa-regular fa-eye-slash eye_open"></i>
                         </div>
                     </div>
-                    <div class="loginBtn" @click="login()">登入</div>
+                    <div class="loginBtn" @click="login()">
+                        <i v-if="loginStart" class="fa-solid fa-ellipsis fa-fade login_load"></i>
+                        <span v-else>登入</span>
+                    </div>
                     <div class="goReg" @click="changeLoginIndex(2)">還沒有帳號嗎？</div>
                     <div class="goReg" @click="changeLoginIndex(3)">忘記密碼？</div>
                 </div>
@@ -115,7 +118,10 @@
                             <i @click="toggleEye(0)" class="fa-regular fa-eye-slash eye_open"></i>
                         </div>
                     </div>
-                    <div class="loginBtn" @click="register()">註冊</div>
+                    <div class="loginBtn" @click="register()">
+                        <i v-if="registerStart" class="fa-solid fa-ellipsis fa-fade login_load"></i>
+                        <span v-else>註冊</span>
+                    </div>
                     <div class="goReg" @click="changeLoginIndex(1)">已擁有會員帳號？</div>
                     <div class="goReg" @click="changeLoginIndex(3)">忘記密碼？</div>
                 </div>
@@ -129,7 +135,10 @@
                             <input type="text" placeholder="請輸入學校電子信箱" v-model="forgetData">
                         </div>
                     </div>
-                    <div class="loginBtn" @click="forgetUser()">寄送資料至信箱</div>
+                    <div class="loginBtn" @click="forgetUser()">
+                        <i v-if="forgetStart" class="fa-solid fa-ellipsis fa-fade login_load"></i>
+                        <span v-else>寄送資料至信箱</span>
+                    </div>
                     <div class="goReg" @click="changeLoginIndex(1)">已擁有會員帳號？</div>
                     <div class="goReg" @click="changeLoginIndex(2)">還沒有帳號嗎？</div>
                 </div>
