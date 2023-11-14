@@ -73,6 +73,7 @@ window.onload=function(){
                 }
             },
             clearLogin(){
+                this.placeholder='輸入關鍵字查詢商品';
                 if(confirm('確認登出？')){
                     // reset
                     localStorage.setItem('user','');
