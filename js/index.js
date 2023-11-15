@@ -461,7 +461,7 @@ window.onload=function(){
                 }
             },
             uploadForum(){ // 完成
-                if(this.forumContent=='' && this.forumContent.trim()=='') this.alert('上傳資料不可為空','error');
+                if(this.forumContent=='' || this.forumContent.trim()=='') this.alert('上傳資料不可為空','error');
                 else if(confirm('確認發布？')){
                     this.forumEnabled=false;
                     this.alert('發布中，請稍候','warn',10000);
