@@ -107,6 +107,11 @@
     line-height: 45px;
     text-align: center;
     color: white;
+    font-size: 18px;
+}
+.userInfoRevise>i{
+    font-size: 32px;
+    line-height: 45px;
 }
 .userInfoRevise:hover{
     cursor: pointer;

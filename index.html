@@ -311,7 +311,10 @@
                         <div>使用者驗證碼：</div>
                         <input type="text" v-model="userInfo.key" :disabled="reviseNotEnabled"><br>
                    </div>
-                    <div class="userInfoRevise" @click="reviseUserInfo()">保存修改</div>
+                    <div class="userInfoRevise" @click="reviseUserInfo()">
+                        <i v-if="reviseNotEnabled" class="fa-solid fa-ellipsis fa-fade"></i>
+                        <span v-else>保存修改</span>
+                    </div>
                 </div>
             </div>
             <div class="content content3" v-if="mainPageIndex==4">
