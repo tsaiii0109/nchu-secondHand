@@ -168,7 +168,7 @@
                 <div class="item-intro-footer">
                     <div class="intro-total">合計：${{product_intro.price}}</div>
                     <div v-if="product_intro.mail!=loginData.user" class="item-intro-btn" @click="reserve(product_intro.title,product_intro.img1,product_intro.price,product_intro.intro,product_intro.mail,product_intro.key)"><i class="fa-solid fa-cart-shopping"></i> 預約商品</div>
-                    <div v-else class="item-intro-btn" @click="removeEnabled?removeItem(product_intro.key,product_intro.title,product_intro.price):alert('下架進行中，請稍待片刻','warn')"><i class="fa-solid fa-cart-shopping"></i>下架商品</div>
+                    <div v-else class="item-intro-btn" @click="removeEnabled?removeItem(product_intro.key,product_intro.title,product_intro.price):alert('下架進行中，請稍待片刻','warn')"><i class="fa-solid fa-cart-shopping"></i> 下架商品</div>
                 </div>
             </div>
             <div class="item-intro2" v-if="openIndex==2">
