@@ -137,7 +137,7 @@
     position: relative;
 }
 .sr-title-expand{
-    height: 285px;
+    height: auto;
 }
 .sr-title:hover{
     cursor: pointer;
