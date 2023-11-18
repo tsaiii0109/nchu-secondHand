@@ -11,7 +11,8 @@ function doPost(e){
         'seller':datas[i][1],
         'content':datas[i][2],
         'price':datas[i][3],
-        'buyer':datas[i][4]
+        'buyer':datas[i][4],
+        'date':datas[i][5]
       })
     }
     else continue;

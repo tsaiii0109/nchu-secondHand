@@ -7,7 +7,7 @@ function doPost(e) {
   if(user=='' || key=='') return ContentService.createTextOutput('failed').setMimeType(ContentService.MimeType.TEXT);
   else{
     for(var i=0;i<datas.length;i++){
-      if(datas[i][0]==key && datas[i][4]){
+      if(datas[i][0]==key && datas[i][4]==user){
         reserve.getRange('A'+(i+1)+':F'+(i+1)).clear();
         break;
       }
