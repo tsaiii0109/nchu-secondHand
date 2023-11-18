@@ -110,7 +110,7 @@
 .sellerReserveList{
     overflow: scroll;
     width: 90%;
-    height: 335px;
+    height: 59vh;
     margin: 0 auto;
 }
 .srlist{
@@ -173,5 +173,5 @@
 }
 .ct-in-index4{
     padding-top: 0;
-    height: 400px;
+    height: 58vh;
 }
