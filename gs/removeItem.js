@@ -18,11 +18,12 @@ function doPost(e) {
   return ContentService.createTextOutput('下架失敗').setMimeType(ContentService.MimeType.TEXT);
 }
 function remind(key,title,price,seller){
-  var html='商品名稱：'+title+'<br>商品價格：'+price;
+  var html='商品名稱：'+title+'<br>商品價格：'+price+'<br>賣家名稱：'+seller;
   var arr=[];
   for(var i=0;i<redatas.length;i++){
     if(redatas[i][0]==key) {
       arr.push(redatas[i][4]);
+      reserve.getRange("A"+(i+1)+":F"+(i+1)).clear();
     }
     else continue;
   }

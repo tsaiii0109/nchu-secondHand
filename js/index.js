@@ -21,6 +21,12 @@ window.onload=function(){
                 user:'',
                 password:'',   
             },
+            userInfo:{
+                user:'',
+                password:'',
+                key:'',
+                img:''
+            },
             ownItem:[],
             product:[],
             allData:{},
@@ -33,7 +39,9 @@ window.onload=function(){
                 img:{},
                 intro:'',
                 mail:'',
-                img1:''
+                img1:'',
+                flag:'',
+                key:''
             },
             uploadItem:{
                 title:'',
@@ -44,7 +52,9 @@ window.onload=function(){
                 mail:'',
                 tag:''
             },
+            uploadUserImgSrc:'',
             forumItem:{},
+            systemInfo:{},
             forumContent:'',
             uploadEnabled:true,
             removeEnabled:true,
@@ -58,7 +68,11 @@ window.onload=function(){
             forgetData:'',
             currentTime:new Date().toLocaleDateString(),
             isJsonFlag:false,
-            placeholder:'輸入關鍵字查詢商品'
+            placeholder:'輸入關鍵字查詢商品',
+            reviseNotEnabled:false,
+            drEnabled:true,
+            sellerReserve:[],
+            buyerReserve:[],
         },
         methods:{
             autoLogin(flag){
@@ -82,6 +96,7 @@ window.onload=function(){
                     document.getElementsByTagName('body')[0].style='background-image:;'
                     this.loginSuccess=false;
                     this.mainPageIndex=0; 
+                    this.userInfo={};
                     this.alert('登出成功！','check');
                 }
             },
@@ -175,7 +190,7 @@ window.onload=function(){
                 fil.classList.toggle('showRadio')
                 target.classList.toggle('showBar');
             },
-            openItem(id,title,price,img,intro,mail,key,img1){
+            openItem(id,title,price,img,intro,mail,key,img1,flag){
                 this.product_intro={
                     id:id,
                     title:title,
@@ -184,7 +199,8 @@ window.onload=function(){
                     intro:intro,
                     mail:mail,
                     key:key,
-                    img1:img1
+                    img1:img1,
+                    flag:flag
                 }
                 this.openIndex=1;
             },
@@ -199,17 +215,11 @@ window.onload=function(){
             closeItem(){
                 this.openIndex=0;
             },
-            main(){
-                this.mainPageIndex=0;
+            main(index,placeholder){
+                this.mainPageIndex=index;
                 this.closeItem();
                 this.keyword='';
-                this.placeholder='輸入關鍵字查詢商品'
-            },
-            openForum(){
-                this.mainPageIndex=1;
-                this.closeItem();
-                this.keyword='';
-                this.placeholder='關鍵字查詢作者或留言'
+                this.placeholder=placeholder;
             },
             openWindow(index){
                 this.openIndex=index;
@@ -328,11 +338,18 @@ window.onload=function(){
             init(){
                 this.uploadItem.mail=this.loginData.user;
                 document.getElementsByTagName('body')[0].style='background-image: url(img/bg2.jpg);'
+                this.getUserInfo();
+                this.getReserveBySeller();
+                this.getReserveByBuyer();
             },
             refresh(flag){
                 this.getProduct(flag);
                 this.getOwner();
                 this.getForum();
+                this.getReserveBySeller();
+                this.getReserveByBuyer();
+                this.getUserInfo();
+                this.getSystemInfo();
             },
             spinRefresh(){
                 var fr =document.getElementById('fr');
@@ -349,6 +366,15 @@ window.onload=function(){
                     document.getElementById('forum-spin').style='display:flex;';
                     msgScroll.classList.add('content-control2-refresh');
                     this.getForum('auto');
+                }
+            },
+            systemRefresh(){
+                var msgScroll= document.getElementById('msgScroll');
+                if(msgScroll.scrollTop==0) {
+                    this.alert('刷新系統通知','warn',3000);
+                    document.getElementById('forum-spin').style='display:flex;';
+                    msgScroll.classList.add('content-control2-refresh');
+                    this.getSystemInfo('auto');
                 }
             },
             alert(msg,option,interval){
@@ -382,6 +408,42 @@ window.onload=function(){
                 document.getElementById('upload1').value='';
                 document.getElementById('upload2').value='';
             },
+            uploadUserImg(){
+                var dom = document.getElementById('headImg');
+                dom.click();
+            },
+            uploadUserImgStart(){
+                this.alert('頭像上傳中，請稍候！','warn',15000);
+                var dom = document.getElementById('headImg');
+                if(dom!=null){
+                    var file = dom.files[0];
+                    var reader =new FileReader();
+                    if(file) reader.readAsDataURL(file);
+                    reader.addEventListener("load", () => {
+                       this.compressHead(reader.result);
+                    }, false);
+                }
+            },
+            uploadUserImgFetch(){
+                const url='https://script.google.com/macros/s/AKfycbyJkmcna66TKgTNqXgUyW0Zd8erBiR_FCe-XT4ZmoALEH6u9kgWHfWFa1KjabnYY0RZ/exec';
+                    var formData=new FormData();
+                    formData.append('user',this.loginData.user);
+                    formData.append('img',this.uploadUserImgSrc);
+                    var config={
+                        method:"POST",
+                        body:formData,
+                        redirect: 'follow'
+                    }
+                    fetch(url,config)
+                    .then(resp=>resp.text())
+                    .then(resp=>{
+                        if(resp=='success'){
+                            this.alert('頭像上傳成功','check');
+                            this.getUserInfo();
+                        }
+                        else this.alert('頭像上傳失敗','error');
+                    })
+            },
             uploadFile(){
                 this.alert('圖片上傳中，請稍候','warn');
                 if(document.getElementById('upload1')!=null){
@@ -392,7 +454,6 @@ window.onload=function(){
                         if(file.size>3000000) this.alert('檔案大於 3MB 請重新上傳。','error');
                         else this.compressImg(reader.result,'img1');
                     }, false);
-                
                 }
             },
             uploadFiles(option,index){
@@ -409,6 +470,31 @@ window.onload=function(){
                         else this.alert('超過上傳上限三張圖！','warn');
                         
                     }, false);     
+                }
+            },
+            compressHead(item){
+                var img =new Image();
+                img.src=item;
+                document.body.appendChild(img);
+                img.onload=()=>{
+                    // 取得原始長寬
+                    var width=img.offsetWidth;
+                    var height=img.offsetHeight;
+                    document.body.removeChild(img);
+                    // 調整大小
+                    img.width=width>=260?260:width;
+                    img.height=width>=260?height*(260/width):height;
+                    // 設定畫布大小
+                    var canvas = document.getElementById('canvas');
+                    canvas.width=img.width;
+                    canvas.height=img.height;
+                    // 開始繪製
+                    var ctx =canvas.getContext('2d');
+                    ctx.drawImage(img,0,0,img.width,img.height);
+                    // 壓縮圖檔
+                    this.uploadUserImgSrc= canvas.toDataURL('image/jpeg',0.9);
+                    this.userInfo.img=canvas.toDataURL('image/jpeg',0.9);
+                    this.uploadUserImgFetch();
                 }
             },
             compressImg(item,target){
@@ -579,12 +665,145 @@ window.onload=function(){
                 var target =eye.classList;
                 target.toString().includes('fa-eye-slash')?target.replace('fa-eye-slash','fa-eye'):target.replace('fa-eye','fa-eye-slash')
                 input.type=='password'?input.type='text':input.type='password';
+            },
+            deleteReserve(key){ // 完成
+                const url='https://script.google.com/macros/s/AKfycbzHPJ_iqjOdDKXTtxIWCaFkXsdXRyONjyO_jiC4UfHKxkxWYoX8HNfoGGXaycpApzys7g/exec';
+                var formData=new FormData();
+                formData.append('user',this.loginData.user);
+                formData.append('key',key);
+                var config={
+                    method:"POST",
+                    body:formData,
+                    redirect: 'follow'
+                }
+                if(confirm('確認刪除預約？')){
+                    this.drEnabled=false;
+                    this.alert('刪除訂單中，請稍候！','warn',15000);
+                    fetch(url,config)
+                    .then(resp=>resp.text())
+                    .then(resp=>{
+                        if(resp=='success'){
+                            this.refresh('auto');
+                            this.alert('刪除訂單成功','check');
+                        }
+                        else this.alert('刪除訂單失敗！','error');
+                        this.drEnabled=true;
+                    })
+                }
+                
+            },
+            getReserveByBuyer(){ // 完成
+                const url='https://script.google.com/macros/s/AKfycbxQ2laPQYNiRbSUcg6Li9paQO08vPKju4SdA7wYqtPxlsm4fme-gM4eJf-wv3wmyNgP/exec';
+                var formData=new FormData();
+                formData.append('user',this.loginData.user);
+                var config={
+                    method:"POST",
+                    body:formData,
+                    redirect: 'follow'
+                }
+                fetch(url,config)
+                .then(resp=>resp.json())
+                .then(resp=>{
+                    this.buyerReserve=resp;
+                })
+            },
+            getReserveBySeller(){ // 完成
+                const url='https://script.google.com/macros/s/AKfycbxQsSFbYZJOP2_do2pf3s4ndscKLatHwYjrvOTwo7XW4LCq5BwX79gCwr6pPYOakdDC/exec';
+                var formData=new FormData();
+                formData.append('user',this.loginData.user);
+                var config={
+                    method:"POST",
+                    body:formData,
+                    redirect: 'follow'
+                }
+                fetch(url,config)
+                .then(resp=>resp.json())
+                .then(resp=>{
+                    this.sellerReserve=resp;
+                })
+            },
+            getUserInfo(){ // 完成
+                this.alert('正在取得使用者資料','warn',15500);
+                const url='https://script.google.com/macros/s/AKfycbwnAVDTGdCJ7TzbmTaBGl8cVOJMRaQaiTnahKwfYRqWY-NZK6ORfkfiXXN56SXdGJ4/exec';
+                var formData=new FormData();
+                formData.append('user',this.loginData.user);
+                formData.append('password',this.loginData.password);
+                formData.append('key',this.loginData.code);
+                var config={
+                    method:"POST",
+                    body:formData,
+                    redirect: 'follow'
+                }
+                fetch(url,config)
+                .then(resp=>resp.json())
+                .then(resp=>{
+                    if(resp=='failed') this.alert('無法取得使用者資訊','error');
+                    else{
+                        this.userInfo=resp;
+                        if(this.userInfo.img=='') this.userInfo.img='ico/apple-icon-max.png'
+                        this.alert('順利取得使用者資訊','check')
+                    }
+                })
+            },
+            reviseUserInfo(){ // 完成
+                this.alert('使用者資料更新中','warn',15500);
+                this.reviseNotEnabled=true;
+                const url='https://script.google.com/macros/s/AKfycbwWMdoU_1kOjEfwNtfCq7IFTqqzusLWIci6HTwcwBoMkJtmDr3PT3nbalqN2BYh7F0-tQ/exec';
+                var formData=new FormData();
+                formData.append('user',this.userInfo.user);
+                formData.append('password',this.userInfo.password);
+                formData.append('key',this.userInfo.key);
+                var config={
+                    method:"POST",
+                    body:formData,
+                    redirect: 'follow'
+                }
+                fetch(url,config)
+                .then(resp=>resp.text())
+                .then(resp=>{
+                    if(resp=='failed') this.alert('使用者資料更新失敗','error');
+                    else{
+                        this.loginData.user=this.userInfo.user;
+                        this.loginData.password=this.userInfo.password;
+                        this.loginData.code=this.userInfo.key;
+                        localStorage.setItem('password',this.userInfo.password);
+                        localStorage.setItem('code',this.userInfo.key);
+                        this.getUserInfo();
+                        this.alert('使用者資料更新成功','check');
+                        this.reviseNotEnabled=false;
+                    }
+                })
+            },
+            toggleSrList(target,index){
+                var dom = document.getElementById(target);
+                var arrow =document.getElementsByClassName('oc')[index];
+                dom.classList.toString().includes('sr-title-expand')?dom.classList.remove('sr-title-expand'):dom.classList.add('sr-title-expand');
+                arrow.classList.toString().includes('fa-chevron-up')?arrow.classList.replace('fa-chevron-up','fa-chevron-down'):arrow.classList.replace('fa-chevron-down','fa-chevron-up');
+            },
+            getSystemInfo(flag){
+                const url='https://script.google.com/macros/s/AKfycbyTTUXkLBtUTbjMDSQY8Oi5JyTUs0jQkvWdVPtXEJBV-MVmvETT-gOErjjv9efI51ucog/exec';
+                var config={
+                    method:"GET",
+                    redirect: 'follow'
+                }
+                fetch(url,config)
+                .then(resp=>resp.json())
+                .then(resp=>{
+                    this.systemInfo=resp.reverse();
+                    if(flag=='auto') {
+                        var msgScroll= document.getElementById('msgScroll');
+                        this.alert('刷新成功','check');
+                        document.getElementById('forum-spin').style='display:none;';
+                        msgScroll.classList.remove('content-control2-refresh');
+                    }
+                })
             }
         }
     })
     vm.alert('歡迎蒞臨本頁面','check');
     vm.getProduct();
     vm.getForum();
+    vm.getSystemInfo();
     //ToolDisabled(); // --> 正式上架時，記得關閉。
 }
 function ToolDisabled(){

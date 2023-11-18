@@ -1,0 +1,177 @@
+.content3{
+    padding-top: 100px;
+}
+.Personlist{
+    width: 100%;
+    margin: 0 auto;
+}
+.pl-head{
+    width: 90%;
+    margin: 0 auto;
+    height: 180px;
+    border-bottom: 1px solid rgba(255,255,255,0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 10px;
+}
+.pl-head-img{
+    width: 130px;
+    height: 130px;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 65px;
+    background-image: url(../img/load_ani.gif);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;
+}
+.pl-head-img>img{
+    width: 100%;
+}
+.uploadUserImg{
+    width: 100%;
+    height: 35px;
+    background-color: rgba(0,0,0,0.6);
+    text-align: center;
+    line-height: 35px;
+    color: white;
+    font-size: 14px;
+    position: absolute;
+    left: 0;
+    bottom: -35px;
+    transition: all 0.8s;
+}
+.pl-head-img:hover>.uploadUserImg,.pl-head-img{
+    cursor: pointer;
+    bottom: 0px;
+}
+.pl-head-name{
+    margin-top: 15px;
+    color: white;
+}
+.pl-c{
+    width: 90%;
+    margin: 0 auto;
+    height: 50px;
+    font-size: 18.5px;
+    line-height: 50px;
+    text-align: center;
+    color: white;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+.pl-c:hover{
+    cursor: pointer;
+    background-color: rgba(255,255,255,0.1);
+}
+.userInfoPage{
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+.userInfoPage-c{
+    width: 100%;
+    height: 70px;
+}
+.userInfoPage-c>div{
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+    margin-bottom: 7px;
+    color: rgba(255,255,255,0.9);
+}
+.userInfoPage-c>input{
+    width: 90%;
+    margin: 0 auto;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    height: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+    margin-left: 15px;
+    color: white;
+}
+.userInfoRevise{
+    width: 100%;
+    margin: 0 auto;
+    background-color: rgba(255,165,0,0.8);
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    color: white;
+}
+.userInfoRevise:hover{
+    cursor: pointer;
+    background-color: rgba(255,165,0,0.6);
+}
+.sellerReserveList{
+    overflow: scroll;
+    width: 90%;
+    height: 335px;
+    margin: 0 auto;
+}
+.srlist{
+    width: 100%;
+    height: 50px;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+.sr-title{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 16px;
+    padding-left: 10px;
+    color: rgba(255,255,255,0.8);
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    background-color: rgba(255,255,255,0.075);
+    position: relative;
+}
+.sr-title-expand{
+    height: auto;
+}
+.sr-title:hover{
+    cursor: pointer;
+    background-color: rgba(255,255,255,0.2);
+}
+.sr-detail{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.sr-dc{
+    width: 48%;
+    padding-left: 10px;
+    line-height: 25px;
+    font-size: 14px;
+    word-wrap: break-word;
+    color: rgba(255,255,255,0.8);
+}
+.sr-ex{
+    width: 96%;
+    line-height: 2.5;
+}
+.sr-btn{
+    width: 96%;
+    line-height: 2.5;
+    text-align: center;
+    color: white;
+    background-color: rgba(255,165,0,0.8);
+    margin-bottom: 7px;
+}
+.sr-btn:hover{
+    cursor: pointer;
+    background-color: rgba(255,165,0,0.6);
+}
+.oc{
+    position: absolute;
+    top:17.5px;
+    right: 10px;
+}
+.ct-in-index4{
+    padding-top: 0;
+    height: 400px;
+}

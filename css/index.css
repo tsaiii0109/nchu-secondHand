@@ -295,6 +295,10 @@ body{
     width: 100%;
     height: 168.81px;
     border-radius: 6px 6px 0 0;
+    background-image: url(../img/load_ani.gif);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 .content-box>h1{
     font-size: 14px;
@@ -733,6 +737,13 @@ body{
     height: 168.75px;
     z-index: 1002;
     border-radius: 6px 6px 0 0;
+    background-image: url(../img/load_ani.gif);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.img_car>img:-moz-loading{
+    background-color: red;
 }
 .arrow>img{
     z-index: 1006;
