@@ -420,7 +420,9 @@ window.onload=function(){
                     var reader =new FileReader();
                     if(file) reader.readAsDataURL(file);
                     reader.addEventListener("load", () => {
-                       this.compressHead(reader.result);
+                       if(file.size>300000) this.alert('檔案大於 300kB 請重新上傳。','error');
+                       else this.compressHead(reader.result);
+                       dom.value='';
                     }, false);
                 }
             },
