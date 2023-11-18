@@ -73,6 +73,7 @@ window.onload=function(){
             drEnabled:true,
             sellerReserve:[],
             buyerReserve:[],
+            autoGetTimer:-1,
         },
         methods:{
             autoLogin(flag){
@@ -97,6 +98,7 @@ window.onload=function(){
                     this.loginSuccess=false;
                     this.mainPageIndex=0; 
                     this.userInfo={};
+                    clearInterval(this.autoGetTimer);
                     this.alert('登出成功！','check');
                 }
             },
@@ -341,6 +343,7 @@ window.onload=function(){
                 this.getUserInfo();
                 this.getReserveBySeller();
                 this.getReserveByBuyer();
+                this.autoGet();
             },
             refresh(flag){
                 this.getProduct(flag);
@@ -693,6 +696,13 @@ window.onload=function(){
                     })
                 }
                 
+            },
+            autoGet(){
+                this.autoGetTimer = setInterval(()=>{
+                    console.log('refresh')
+                    this.getReserveByBuyer();
+                    this.getReserveBySeller();
+                },15000);
             },
             getReserveByBuyer(){ // 完成
                 const url='https://script.google.com/macros/s/AKfycbxQ2laPQYNiRbSUcg6Li9paQO08vPKju4SdA7wYqtPxlsm4fme-gM4eJf-wv3wmyNgP/exec';
