@@ -776,11 +776,17 @@ window.onload=function(){
                     }
                 })
             },
-            toggleSrList(target,index){
-                var dom = document.getElementById(target);
-                var arrow =document.getElementsByClassName('oc')[index];
-                dom.classList.toString().includes('sr-title-expand')?dom.classList.remove('sr-title-expand'):dom.classList.add('sr-title-expand');
-                arrow.classList.toString().includes('fa-chevron-up')?arrow.classList.replace('fa-chevron-up','fa-chevron-down'):arrow.classList.replace('fa-chevron-down','fa-chevron-up');
+            toggleSrList(index){
+                var dom = document.getElementsByClassName('srlist');
+                var arrow =document.getElementsByClassName('oc');
+                for(var i=0;i<dom.length;i++){
+                    dom[i].classList.toString().includes('sr-title-expand')?dom[i].classList.remove('sr-title-expand'):dom[i].classList.add('sr-title-expand');
+                    arrow[i].classList.toString().includes('fa-chevron-up')?arrow[i].classList.replace('fa-chevron-up','fa-chevron-down'):arrow[i].classList.replace('fa-chevron-down','fa-chevron-up');
+                    if(i!=index){
+                        dom[i].classList.toString().includes('sr-title-expand')?dom[i].classList.remove('sr-title-expand'):'';
+                        arrow[i].classList.toString().includes('fa-chevron-down')?arrow[i].classList.replace('fa-chevron-down','fa-chevron-up'):'';
+                    }
+                }
             },
             getSystemInfo(flag){
                 const url='https://script.google.com/macros/s/AKfycbyTTUXkLBtUTbjMDSQY8Oi5JyTUs0jQkvWdVPtXEJBV-MVmvETT-gOErjjv9efI51ucog/exec';
