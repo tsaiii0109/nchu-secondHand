@@ -1,5 +1,6 @@
 var sheet =SpreadsheetApp.openById('1_wamUoxajfCscy369v4Q2iCpTvIg41QrGZYKkPHo8is').getSheetByName('product');
 var reserve =SpreadsheetApp.openById('1QUihl3Fvsrh9oqxY9yqlPTxO-nAM1XgCEZoyNeYLTzI').getSheetByName('reserve');
+var system= SpreadsheetApp.openById('1XCOi7LaE0z4Qm8qromSBa_NS_atyErqxqy_o2-txLhg').getSheetByName('main');
 var datas=sheet.getRange('G1:G'+sheet.getLastRow()).getValues();
 var redatas =reserve.getDataRange().getValues();
 function doPost(e) {
@@ -23,6 +24,7 @@ function remind(key,title,price,seller){
   for(var i=0;i<redatas.length;i++){
     if(redatas[i][0]==key) {
       arr.push(redatas[i][4]);
+      system.appendRow([redatas[i][4],seller+' 於 '+ new Date().toLocaleDateString()+' 下架了您預約的商品： '+title,new Date().getTime()]);
       reserve.getRange("A"+(i+1)+":F"+(i+1)).clear();
     }
     else continue;
