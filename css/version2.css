@@ -186,3 +186,8 @@
     padding-top: 0;
     height: 54vh;
 }
+.newFire{
+    font-size: 11px;
+    color: red;
+    margin-left: 7px;
+}
