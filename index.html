@@ -50,6 +50,7 @@
     <link rel="preload" href="img/down.webp" as="image" />
     <link rel="preload" href="img/NCHU.png" as="image" />
     <link rel="preload" href="img/load_ani.gif" as="image" />
+    <link rel="preload" href="img/system.png" as="image" />
     <link rel="preconnect" href="https://drive.google.com">
 </head>
 <style>
@@ -402,7 +403,7 @@
                         <div class="artist">
                             <img src="img/system.png" alt="">
                             <p>系統通知</p>
-                            <div class="newFire" v-if="sysInfoReadTime-obj.date<=2880000"><i class="fa-solid fa-fire"></i> Latest</div>
+                            <div class="newFire" v-if="sysInfoReadTime-obj.date<=129600000"><i class="fa-solid fa-fire"></i> Latest</div>
                         </div>
                         <div class="artist-c" v-text="obj.content"></div>
                     </div>
