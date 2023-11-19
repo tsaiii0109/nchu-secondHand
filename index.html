@@ -167,8 +167,9 @@
                 </div>
                 <div class="item-intro-footer">
                     <div class="intro-total">合計：${{product_intro.price}}</div>
-                    <div v-if="product_intro.mail!=loginData.user" class="item-intro-btn" @click="reserve(product_intro.title,product_intro.img1,product_intro.price,product_intro.intro,product_intro.mail,product_intro.key)"><i class="fa-solid fa-cart-shopping"></i> 預約商品</div>
-                    <div v-else class="item-intro-btn" @click="removeEnabled?removeItem(product_intro.key,product_intro.title,product_intro.price):alert('下架進行中，請稍待片刻','warn')"><i class="fa-solid fa-cart-shopping"></i> 下架商品</div>
+                    <div v-if="product_intro.mail==loginData.user" class="item-intro-btn" @click="removeEnabled?removeItem(product_intro.key,product_intro.title,product_intro.price):alert('下架進行中，請稍待片刻','warn')"><i class="fa-solid fa-trash"></i> 下架商品</div>
+                    <div v-else-if="buyerReserve.find(el=> el.buyer == this.loginData.user && el.key == product_intro.key)" class="item-intro-btn" @click="deleteReserve(product_intro.key)"><i class="fa-solid fa-seedling"></i> 取消預約</div>
+                    <div v-else class="item-intro-btn" @click="reserve(product_intro.title,product_intro.img1,product_intro.price,product_intro.intro,product_intro.mail,product_intro.key)"><i class="fa-solid fa-cart-shopping"></i> 預約商品</div>           
                 </div>
             </div>
             <div class="item-intro2" v-if="openIndex==2">
@@ -179,7 +180,7 @@
                     <div class="shop-title"><div class="stt">商品介紹：</div><br>
                         <textarea v-model="uploadItem.intro"></textarea>
                     </div>
-                    <div class="shop-title"><div class="stt">商品縮圖(1:1、最大3MB):</div><input type='file' accept="image/jpg,image/png,image/jpeg" class="file" id="upload1" v-on:change="uploadFile()"><br></div>
+                    <div class="shop-title"><div class="stt">商品縮圖(1:1、最大3MB):</div> <input type='file' accept="image/jpg,image/png,image/jpeg" class="file" id="upload1" v-on:change="uploadFile()"><br></div>
                     <div class="shop-title"><div class="stt">商品縮圖(1:2、可三張、最大各3MB):</div><input type='file' accept="image/jpg,image/png,image/jpeg" class="file" id="upload2" v-on:change="uploadFiles()" multiple><br></div>
                     <div class="shop-title">商品標籤:
                         <select name="" id="" v-model="uploadItem.tag">
@@ -313,7 +314,7 @@
                    </div>
                     <div class="userInfoRevise" @click="reviseUserInfo()">
                         <i v-if="reviseNotEnabled" class="fa-solid fa-ellipsis fa-fade"></i>
-                        <span v-else>保存修改</span>
+                        <span v-else><i class="fa-solid fa-pen"></i> 保存修改</span>
                     </div>
                 </div>
             </div>
@@ -361,7 +362,7 @@
                         <div class="sr-dc">訂單價格：<br>$ {{obj.price}}</div>
                         <div class="sr-dc">商品識別：<br>{{obj.key}}</div>
                         <div class="sr-dc sr-ex">賣家信箱：{{obj.seller}}</div>
-                        <div class="sr-btn" @click="removeEnabled?removeItem(obj.key,obj.content,obj.price):alert('下架進行中，請稍待片刻','warn')">下架商品</div>
+                        <div class="sr-btn" @click="removeEnabled?removeItem(obj.key,obj.content,obj.price):alert('下架進行中，請稍待片刻','warn')"><i class="fa-solid fa-trash"></i> 下架商品</div>
                     </div>
                   </div>
                 </div>
@@ -386,7 +387,7 @@
                         <div class="sr-dc">訂單價格：<br>$ {{obj.price}}</div>
                         <div class="sr-dc">商品識別：<br>{{obj.key}}</div>
                         <div class="sr-dc sr-ex">賣家信箱：{{obj.seller}}</div>
-                        <div class="sr-btn" @click="drEnabled?deleteReserve(obj.key):alert('取消預約中，請稍待片刻','warn')">取消預約</div>
+                        <div class="sr-btn" @click="drEnabled?deleteReserve(obj.key):alert('取消預約中，請稍待片刻','warn')"><i class="fa-solid fa-seedling"></i> 取消預約</div>
                     </div>
                   </div>
                 </div>
@@ -397,10 +398,11 @@
                     <div class="content-box content-box2" 
                     v-for="obj,index in systemInfo" 
                     v-if="obj.content.includes(keyword) || keyword==''">
-                        <div class="art-date">{{obj.date}}</div>
+                        <div class="art-date" v-text="new Date(obj.date).toLocaleDateString()"></div>
                         <div class="artist">
                             <img src="img/system.png" alt="">
                             <p>系統通知</p>
+                            <div class="newFire" v-if="sysInfoReadTime-obj.date<=2880000"><i class="fa-solid fa-fire"></i> Latest</div>
                         </div>
                         <div class="artist-c" v-text="obj.content"></div>
                     </div>

@@ -74,6 +74,7 @@ window.onload=function(){
             sellerReserve:[],
             buyerReserve:[],
             autoGetTimer:-1,
+            sysInfoReadTime:0,
         },
         methods:{
             autoLogin(flag){
@@ -222,6 +223,7 @@ window.onload=function(){
                 this.closeItem();
                 this.keyword='';
                 this.placeholder=placeholder;
+                if(index==7) this.sysInfoReadTime=new Date().getTime();
             },
             openWindow(index){
                 this.openIndex=index;
@@ -344,6 +346,7 @@ window.onload=function(){
                 this.getReserveBySeller();
                 this.getReserveByBuyer();
                 this.autoGet();
+                this.getSystemInfo();
             },
             refresh(flag){
                 this.getProduct(flag);
@@ -699,9 +702,9 @@ window.onload=function(){
             },
             autoGet(){
                 this.autoGetTimer = setInterval(()=>{
-                    console.log('refresh')
                     this.getReserveByBuyer();
                     this.getReserveBySeller();
+                    this.getSystemInfo();
                 },15000);
             },
             getReserveByBuyer(){ // 完成
@@ -800,8 +803,11 @@ window.onload=function(){
             },
             getSystemInfo(flag){
                 const url='https://script.google.com/macros/s/AKfycbyTTUXkLBtUTbjMDSQY8Oi5JyTUs0jQkvWdVPtXEJBV-MVmvETT-gOErjjv9efI51ucog/exec';
+                var formData=new FormData();
+                formData.append('user',this.loginData.user);
                 var config={
-                    method:"GET",
+                    method:"POST",
+                    body:formData,
                     redirect: 'follow'
                 }
                 fetch(url,config)
@@ -821,7 +827,6 @@ window.onload=function(){
     vm.alert('歡迎蒞臨本頁面','check');
     vm.getProduct();
     vm.getForum();
-    vm.getSystemInfo();
     //ToolDisabled(); // --> 正式上架時，記得關閉。
 }
 function ToolDisabled(){
