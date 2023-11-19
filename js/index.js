@@ -354,7 +354,7 @@ window.onload=function(){
                 this.getForum();
                 this.getReserveBySeller();
                 this.getReserveByBuyer();
-                this.getUserInfo();
+                this.getUserInfo('auto');
                 this.getSystemInfo();
             },
             spinRefresh(){
@@ -447,7 +447,7 @@ window.onload=function(){
                     .then(resp=>{
                         if(resp=='success'){
                             this.alert('頭像上傳成功','check');
-                            this.getUserInfo();
+                            this.getUserInfo('auto');
                         }
                         else this.alert('頭像上傳失敗','error');
                     })
@@ -737,8 +737,8 @@ window.onload=function(){
                     this.sellerReserve=resp;
                 })
             },
-            getUserInfo(){ // 完成
-                this.alert('正在取得使用者資料','warn',15500);
+            getUserInfo(flag){ // 完成
+                if(flag==undefined) this.alert('正在取得使用者資料','warn',15500);
                 const url='https://script.google.com/macros/s/AKfycbwnAVDTGdCJ7TzbmTaBGl8cVOJMRaQaiTnahKwfYRqWY-NZK6ORfkfiXXN56SXdGJ4/exec';
                 var formData=new FormData();
                 formData.append('user',this.loginData.user);
@@ -756,7 +756,7 @@ window.onload=function(){
                     else{
                         this.userInfo=resp;
                         if(this.userInfo.img=='') this.userInfo.img='ico/apple-icon-max.png'
-                        this.alert('順利取得使用者資訊','check')
+                        if(flag==undefined) this.alert('順利取得使用者資訊','check')
                     }
                 })
             },
@@ -783,7 +783,7 @@ window.onload=function(){
                         this.loginData.code=this.userInfo.key;
                         localStorage.setItem('password',this.userInfo.password);
                         localStorage.setItem('code',this.userInfo.key);
-                        this.getUserInfo();
+                        this.getUserInfo('auto');
                         this.alert('使用者資料更新成功','check');
                         this.reviseNotEnabled=false;
                     }
