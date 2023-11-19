@@ -664,7 +664,7 @@ window.onload=function(){
                 }
             },
             copy(item){
-                this.alert('商品編號複製成功','check');
+                this.alert('複製成功','check');
                 navigator.clipboard.writeText(item);
             },
             toggleEye(index){
