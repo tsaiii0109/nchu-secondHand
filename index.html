@@ -354,8 +354,8 @@
                     <div class="pl-head-name" v-text="userInfo.user"></div>
                 </div>
                 <div class="sellerReserveList">
-                  <div class="srlist" v-if="obj.content.includes(keyword) || obj.buyer.includes(keyword) || keyword==''" v-for="obj,index in sellerReserve" :id="'srlist'+index" @click="toggleSrList(index)">
-                    <div class="sr-title">出貨單 {{index+1}}：{{obj.content}}<i class="fa-solid fa-chevron-up oc"></i></div>
+                  <div class="srlist" v-if="obj.content.includes(keyword) || obj.buyer.includes(keyword) || keyword==''" v-for="obj,index in sellerReserve" :id="'srlist'+index">
+                    <div class="sr-title" @click="toggleSrList(index)">出貨單 {{index+1}}：{{obj.content}}<i class="fa-solid fa-chevron-up oc"></i></div>
                     <div class="sr-detail">
                         <div class="sr-dc sr-ex">買家信箱：{{obj.buyer}}</div>
                         <div class="sr-dc">訂單成立：<br>{{new Date(obj.date).toLocaleDateString()}}</div>
@@ -379,8 +379,8 @@
                     <div class="pl-head-name" v-text="userInfo.user"></div>
                 </div>
                 <div class="sellerReserveList">
-                    <div class="srlist" v-if="obj.content.includes(keyword) || obj.seller.includes(keyword) || keyword==''" v-for="obj,index in buyerReserve" :id="'srlist'+index" @click="toggleSrList(index)">
-                    <div class="sr-title">預約單 {{index+1}}：{{obj.content}}<i class="fa-solid fa-chevron-up oc"></i></div>
+                    <div class="srlist" v-if="obj.content.includes(keyword) || obj.seller.includes(keyword) || keyword==''" v-for="obj,index in buyerReserve" :id="'srlist'+index">
+                    <div class="sr-title" @click="toggleSrList(index)">預約單 {{index+1}}：{{obj.content}}<i class="fa-solid fa-chevron-up oc"></i></div>
                     <div class="sr-detail">
                         <div class="sr-dc sr-ex">買家信箱：{{obj.buyer}}</div>
                         <div class="sr-dc">訂單成立：<br>{{new Date(obj.date).toLocaleDateString()}}</div>
