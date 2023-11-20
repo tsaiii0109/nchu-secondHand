@@ -41,7 +41,8 @@ window.onload=function(){
                 mail:'',
                 img1:'',
                 flag:'',
-                key:''
+                key:'',
+                tag:''
             },
             uploadItem:{
                 title:'',
@@ -52,6 +53,14 @@ window.onload=function(){
                 mail:'',
                 tag:''
             },
+            reviseProduct:{
+                title:'',
+                price:'',
+                intro:'',
+                tag:'',
+                key:''
+            },
+            reviseProductEnabled:true,
             uploadUserImgSrc:'',
             forumItem:{},
             systemInfo:{},
@@ -193,7 +202,7 @@ window.onload=function(){
                 fil.classList.toggle('showRadio')
                 target.classList.toggle('showBar');
             },
-            openItem(id,title,price,img,intro,mail,key,img1,flag){
+            openItem(id,title,price,img,intro,mail,key,img1,flag,tag){
                 this.product_intro={
                     id:id,
                     title:title,
@@ -203,7 +212,8 @@ window.onload=function(){
                     mail:mail,
                     key:key,
                     img1:img1,
-                    flag:flag
+                    flag:flag,
+                    tag:tag
                 }
                 this.openIndex=1;
             },
@@ -225,8 +235,11 @@ window.onload=function(){
                 this.placeholder=placeholder;
                 if(index==7) this.sysInfoReadTime=new Date().getTime();
             },
-            openWindow(index){
+            openWindow(index,obj){
                 this.openIndex=index;
+                if(index==3){
+                    this.reviseProduct=obj;
+                } 
             },
             removeItem(key,title,price){ // 完成
                 if(confirm('確認下架商品？') && key!=undefined && key!=''){
@@ -247,7 +260,8 @@ window.onload=function(){
                     .then(resp=>resp.text())
                     .then(resp=>{
                         if(resp=='下架成功'){
-                            this.alert('下架成功！','check');
+                            this.alert('下架成功！','check',15000);
+                            this.closeItem();
                             this.refresh('auto');
                         }
                         else this.alert('下架失敗','error');
@@ -292,6 +306,42 @@ window.onload=function(){
                     })
                 }
                 
+            },
+            reviseProductStart(){ // 完成
+                if(this.reviseProduct.title=='' || this.reviseProduct.price=='' || this.reviseProduct.intro=='' || this.reviseProduct.tag==undefined){
+                    this.alert('不可空白','error');
+                }
+                else if(!new RegExp('^[0-9]*$').test(this.reviseProduct.price)){
+                    this.alert('價格只能輸入數字','error');
+                }
+                else if(confirm('確認修改商品？')){
+                    this.reviseProductEnabled=false;
+                    this.alert('修改中，請稍候','warn',10500);
+                    const url='https://script.google.com/macros/s/AKfycbwidDfB15oR8rKealgZUg0RjSqr-7OS0dcUYKGksui1Zb-11HVNwocD_HqwQ59iRBWW/exec';
+                    var formData=new FormData();
+                    formData.append('title',this.reviseProduct.title);
+                    formData.append('price',this.reviseProduct.price);
+                    formData.append('intro',this.reviseProduct.intro);
+                    formData.append('tag',this.reviseProduct.tag);
+                    formData.append('key',this.reviseProduct.key);
+                    var config={
+                        method:'post',
+                        body:formData,
+                        redirect:'follow'
+                    }
+                    fetch(url,config)
+                    .then(resp=>resp.text())
+                    .then(resp=>{
+                        if(resp=='success'){
+                            this.refresh('auto');
+                            this.alert('修改成功！','check',15000);
+                            this.reviseProduct={};
+                            this.closeItem();
+                        }
+                        else this.alert('修改失敗','error');
+                        this.reviseProductEnabled=true;
+                    })
+                }
             },
             reserve(title,img,price,intro,mail,key){ // 完成
                 if(confirm('確認預約？')){
