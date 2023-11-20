@@ -230,6 +230,16 @@ body{
     text-align: center;
     line-height: 34.4px;
 }
+.item-intro-btn-seller{
+    width: 70px;
+    top:4px;
+    right: 85px;
+}
+.item-intro-btn-seller2{
+    width: 70px;
+    top:4px;
+    right: 10px;
+}
 .item-intro-btn:hover{
     cursor: pointer;
     background-color: rgba(255,165,0,0.8);
@@ -393,6 +403,8 @@ body{
 .shop-title>textarea{
     width: 260px;
     height: 30px;
+    padding: 5px;
+    text-align: justify;
 }
 .shop-title>select{
     width: 100px;
@@ -783,4 +795,21 @@ body{
 }
 .copy_icon:hover{
     cursor: pointer;
+}
+.reviseTitle{
+    position: absolute;
+    width: 100px;
+    margin: 0 auto;
+    top:50px;
+    text-align: center;
+    font-size: 24px;
+}
+.shopTitle2{
+    height: 70px;
+}
+.reviseIntro{
+    height: 100px !important;
+}
+.reviseTag{
+    margin-top: 10px;
 }
