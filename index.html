@@ -356,14 +356,16 @@
                 <div class="sellerReserveList">
                   <div class="srlist" v-if="obj.content.includes(keyword) || obj.buyer.includes(keyword) || keyword==''" v-for="obj,index in sellerReserve" :id="'srlist'+index">
                     <div class="sr-title" @click="toggleSrList(index)">出貨單 {{index+1}}：{{obj.content}}<i class="fa-solid fa-chevron-up oc"></i></div>
-                    <div class="sr-detail">
-                        <div class="sr-dc sr-ex">買家信箱：{{obj.buyer}} <i @click="copy(obj.buyer)" class="fa-regular fa-copy copy_icon" title="複製"></i></div>
-                        <div class="sr-dc">訂單成立：<br>{{new Date(obj.date).toLocaleDateString()}}</div>
-                        <div class="sr-dc">商品名稱：<br>{{obj.content}}</div>
-                        <div class="sr-dc">訂單價格：<br>$ {{obj.price}}</div>
-                        <div class="sr-dc">商品識別：<br>{{obj.key}}</div>
-                        <div class="sr-dc sr-ex">賣家信箱：{{obj.seller}} <i @click="copy(obj.seller)" class="fa-regular fa-copy copy_icon" title="複製"></i></div>
-                        <div class="sr-btn" @click="removeEnabled?removeItem(obj.key,obj.content,obj.price):alert('下架進行中，請稍待片刻','warn')"><i class="fa-solid fa-trash"></i> 下架商品</div>
+                    <div class="sr-detail-control">
+                        <div class="sr-detail">
+                            <div class="sr-dc sr-ex">買家信箱：{{obj.buyer}} <i @click="copy(obj.buyer)" class="fa-regular fa-copy copy_icon" title="複製"></i></div>
+                            <div class="sr-dc">訂單成立：<br>{{new Date(obj.date).toLocaleDateString()}}</div>
+                            <div class="sr-dc">商品名稱：<br>{{obj.content}}</div>
+                            <div class="sr-dc">訂單價格：<br>$ {{obj.price}}</div>
+                            <div class="sr-dc">商品識別：<br>{{obj.key}}</div>
+                            <div class="sr-dc sr-ex">賣家信箱：{{obj.seller}} <i @click="copy(obj.seller)" class="fa-regular fa-copy copy_icon" title="複製"></i></div>
+                            <div class="sr-btn" @click="removeEnabled?removeItem(obj.key,obj.content,obj.price):alert('下架進行中，請稍待片刻','warn')"><i class="fa-solid fa-trash"></i> 下架商品</div>
+                        </div>
                     </div>
                   </div>
                 </div>
@@ -381,14 +383,16 @@
                 <div class="sellerReserveList">
                     <div class="srlist" v-if="obj.content.includes(keyword) || obj.seller.includes(keyword) || keyword==''" v-for="obj,index in buyerReserve" :id="'srlist'+index">
                     <div class="sr-title" @click="toggleSrList(index)">預約單 {{index+1}}：{{obj.content}}<i class="fa-solid fa-chevron-up oc"></i></div>
-                    <div class="sr-detail">
-                        <div class="sr-dc sr-ex">買家信箱：{{obj.buyer}} <i @click="copy(obj.buyer)" class="fa-regular fa-copy copy_icon" title="複製"></i></div>
-                        <div class="sr-dc">訂單成立：<br>{{new Date(obj.date).toLocaleDateString()}}</div>
-                        <div class="sr-dc">商品名稱：<br>{{obj.content}}</div>
-                        <div class="sr-dc">訂單價格：<br>$ {{obj.price}}</div>
-                        <div class="sr-dc">商品識別：<br>{{obj.key}}</div>
-                        <div class="sr-dc sr-ex">賣家信箱：{{obj.seller}} <i @click="copy(obj.seller)" class="fa-regular fa-copy copy_icon" title="複製"></i></div>
-                        <div class="sr-btn" @click="drEnabled?deleteReserve(obj.key):alert('取消預約中，請稍待片刻','warn')"><i class="fa-solid fa-seedling"></i> 取消預約</div>
+                    <div class="sr-detail-control">
+                        <div class="sr-detail">
+                            <div class="sr-dc sr-ex">買家信箱：{{obj.buyer}} <i @click="copy(obj.buyer)" class="fa-regular fa-copy copy_icon" title="複製"></i></div>
+                            <div class="sr-dc">訂單成立：<br>{{new Date(obj.date).toLocaleDateString()}}</div>
+                            <div class="sr-dc">商品名稱：<br>{{obj.content}}</div>
+                            <div class="sr-dc">訂單價格：<br>$ {{obj.price}}</div>
+                            <div class="sr-dc">商品識別：<br>{{obj.key}}</div>
+                            <div class="sr-dc sr-ex">賣家信箱：{{obj.seller}} <i @click="copy(obj.seller)" class="fa-regular fa-copy copy_icon" title="複製"></i></div>
+                            <div class="sr-btn" @click="drEnabled?deleteReserve(obj.key):alert('取消預約中，請稍待片刻','warn')"><i class="fa-solid fa-seedling"></i> 取消預約</div>
+                        </div>
                     </div>
                   </div>
                 </div>

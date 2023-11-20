@@ -128,7 +128,17 @@
     height: 50px;
     overflow: hidden;
     border-bottom: 1px solid rgba(255,255,255,0.2);
-    /*transition-duration: 1s; <- 手機不支援 */
+    transition-duration: 0.8s;
+    margin-bottom: 5px;
+}
+@media screen and (max-width:768px){
+    .srlist{
+        width: 100%;
+        height: 50px;
+        overflow: hidden;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+        transition-duration:0s;
+    }
 }
 .sr-title{
     width: 100%;
@@ -142,11 +152,17 @@
     position: relative;
 }
 .sr-title-expand{
-    height: auto;
+    height: 305px;
 }
 .sr-title:hover{
     cursor: pointer;
     background-color: rgba(255,255,255,0.2);
+}
+.sr-detail-control{
+    height: 255px;
+    display: flex;
+    justify-content: center;
+    overflow: scroll;
 }
 .sr-detail{
     display: flex;
@@ -167,11 +183,12 @@
 }
 .sr-btn{
     width: 96%;
-    line-height: 2.5;
+    line-height:40px;
     text-align: center;
     color: white;
     background-color: rgba(255,165,0,0.8);
     margin-bottom: 7px;
+    height: 40px;
 }
 .sr-btn:hover{
     cursor: pointer;
