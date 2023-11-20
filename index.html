@@ -107,6 +107,7 @@
                     <div class="goReg" @click="changeLoginIndex(2)">還沒有帳號嗎？</div>
                     <div class="goReg" @click="changeLoginIndex(3)">忘記密碼？</div>
                 </div>
+                <div class="versionInfo">{{version}} <br><i class="fa-solid fa-cannabis"></i> Designed By SCCJ</div>
             </div>
             <div class="login" v-if="loginPageIndex==2">
                 <h1>會員註冊</h1>
@@ -131,6 +132,7 @@
                     <div class="goReg" @click="changeLoginIndex(1)">已擁有會員帳號？</div>
                     <div class="goReg" @click="changeLoginIndex(3)">忘記密碼？</div>
                 </div>
+                <div class="versionInfo">{{version}} <br><i class="fa-solid fa-cannabis"></i> Designed By SCCJ</div>
             </div>
             <div class="login" v-if="loginPageIndex==3">
                 <h1>找回密碼</h1>
@@ -148,6 +150,7 @@
                     <div class="goReg" @click="changeLoginIndex(1)">已擁有會員帳號？</div>
                     <div class="goReg" @click="changeLoginIndex(2)">還沒有帳號嗎？</div>
                 </div>
+                <div class="versionInfo">{{version}} <br><i class="fa-solid fa-cannabis"></i> Designed By SCCJ</div>
             </div>
         </div>
         <div class="mainPage" v-if="loginSuccess">
@@ -390,7 +393,7 @@
                             <div class="sr-dc">訂單價格：<br>$ {{obj.price}}</div>
                             <div class="sr-dc">商品識別：<br>{{obj.key}}</div>
                             <div class="sr-dc sr-ex">賣家信箱：{{obj.seller}} <i @click="copy(obj.seller)" class="fa-regular fa-copy copy_icon" title="複製"></i></div>
-                            <div class="sr-btn" @click="removeEnabled?removeItem(obj.key,obj.content,obj.price):alert('下架進行中，請稍待片刻','warn')"><i class="fa-solid fa-trash"></i> 下架商品</div>
+                            <div class="sr-btn" @click="removeEnabled?finishOrder(obj.key):alert('紀錄中，請稍待片刻','warn')"><i class="fa-solid fa-flag"></i> 完成訂單</div>
                         </div>
                     </div>
                   </div>
@@ -433,7 +436,7 @@
                         <div class="artist">
                             <img src="img/system.png" alt="">
                             <p>系統通知</p>
-                            <div class="newFire" v-if="sysInfoReadTime-obj.date<=129600000"><i class="fa-solid fa-fire"></i> Latest</div>
+                            <div class="newFire" v-if="sysInfoReadTime-obj.date<=43200000"><i class="fa-solid fa-fire"></i> Latest</div>
                         </div>
                         <div class="artist-c" v-text="obj.content"></div>
                     </div>

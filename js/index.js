@@ -5,6 +5,7 @@ window.onload=function(){
     const vm = new Vue({
         el:'#app',
         data:{
+            version:'v2.0.0 測試版',
             loginPageIndex:1,
             loginStart:false,
             registerStart:false,
@@ -749,6 +750,32 @@ window.onload=function(){
                             this.alert('刪除訂單成功','check');
                         }
                         else this.alert('刪除訂單失敗！','error');
+                        this.drEnabled=true;
+                    })
+                }
+                
+            },
+            finishOrder(key){ // 完成
+                const url='https://script.google.com/macros/s/AKfycbwkKgGaLQg8yi-86BAWXkNEmGIYLVTCuv7IHjw857aZpxVsOL2QoqwXztMpC2zXYEvo/exec';
+                var formData=new FormData();
+                formData.append('user',this.loginData.user);
+                formData.append('key',key);
+                var config={
+                    method:"POST",
+                    body:formData,
+                    redirect: 'follow'
+                }
+                if(confirm('確認完成訂單？')){
+                    this.drEnabled=false;
+                    this.alert('紀錄訂單中，請稍候！','warn',15000);
+                    fetch(url,config)
+                    .then(resp=>resp.text())
+                    .then(resp=>{
+                        if(resp=='success'){
+                            this.refresh('auto');
+                            this.alert('紀錄成功','check');
+                        }
+                        else this.alert('紀錄失敗！','error');
                         this.drEnabled=true;
                     })
                 }
