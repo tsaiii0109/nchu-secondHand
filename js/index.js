@@ -295,7 +295,7 @@ window.onload=function(){
             },
             reserve(title,img,price,intro,mail,key){ // 完成
                 if(confirm('確認預約？')){
-                    this.alert('預約中，請稍候','warn',3250);
+                    this.alert('預約中，請稍候','warn',13250);
                     const url='https://script.google.com/macros/s/AKfycbzaiaKQuSJXipu-K3vv8NaD5WyLQ6yk4VbXRjcVq_YlWfdE_-DVGxHHn71_QzlJSfbG/exec';
                     var formData=new FormData();
                     formData.append('buyer',this.loginData.user);
@@ -318,6 +318,10 @@ window.onload=function(){
                             setTimeout(() => { // 延遲刷新
                                 this.refresh('auto');
                             }, 250);
+                        }
+                        else if(resp=='product not found'){
+                            this.alert('商品已下架，請重新挑選！','error');
+                            this.refresh('auto');
                         }
                         else this.alert('預約失敗','error');
                     })
