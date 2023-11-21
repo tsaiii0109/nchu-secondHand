@@ -225,18 +225,6 @@
                     <div class="shopbtn" @click="reviseProductEnabled?reviseProductStart():alert('修改進行中，請稍待片刻','warn')"><i class="fa-solid fa-pen"></i> 保存修改</div>
                 </div>
             </div>
-            <div class="item-intro2 item-intro4" v-if="openIndex==4">
-                <div class="shop forum-form">
-                    <i @click="closeItem()" class="fa-solid fa-xmark mark2"></i>
-                    <h1 class="forum-title">發布留言板</h1>
-                    <div class="forum-detail">
-                        <p class="forum-detail-p">留言者：{{loginData.user}}</p>
-                        <p class="forum-detail-p">現在時間：{{currentTime}}</p>
-                    </div>
-                    <textarea class="forum-content" v-model="forumContent" placeholder="寫些想要說說的話吧！"></textarea>
-                    <div class="shopbtn" @click="forumEnabled?uploadForum():alert('發布進行中，請稍待片刻','warn')"><i class="fa-solid fa-pen"></i> 發布留言</div>
-                </div>
-            </div>
             <div class="header">
                 <div class="mpTitle">
                     <div class="mpLogo">NCHU</div>
@@ -298,8 +286,10 @@
                     </div>
                 </div>
             </div>
-            <div class="write" v-if="mainPageIndex==1" @click="openWindow(4)">
-                <i class="fa-solid fa-pencil"></i>
+            <div class="write" id="write" v-if="mainPageIndex==1">
+                <i class="fa-solid fa-pencil writePen"></i>
+                <input type="text" class="write-input" id="wrInput" v-model="forumContent" placeholder="輸入完畢後按下 Enter 即可發佈留言！">
+                <i  class="fa-solid fa-paper-plane writeSend" @click="forumEnabled?uploadForum():alert('發布進行中，請稍待片刻','warn')"></i>
             </div>
             <div class="content content3" v-if="mainPageIndex==2">
                 <div class="Personlist">

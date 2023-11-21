@@ -226,6 +226,19 @@ window.onload=function(){
                 }
                 return true;
             },
+            isForumInput(){
+                window.addEventListener('keydown',(e)=>{
+                    if(this.mainPageIndex==1){
+                        var dom =document.getElementById('write');
+                        var width = window.getComputedStyle(dom,null).getPropertyValue('width')
+                        if(e.code=='Enter'){
+                            if(this.forumContent!='' && Number.parseInt(width)>150){
+                                this.uploadForum();
+                            }
+                        }
+                    }
+                })
+            },
             closeItem(){
                 this.openIndex=0;
             },
@@ -402,6 +415,8 @@ window.onload=function(){
                 this.getReserveByBuyer();
                 this.autoGet();
                 this.getSystemInfo();
+                // 事件綁定
+                this.isForumInput();
             },
             refresh(flag){
                 this.getProduct(flag);
