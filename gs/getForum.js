@@ -20,15 +20,15 @@ function doPost(e){
   var key = new Date().getTime();
   if(user=='' || content=='') return ContentService.createTextOutput('failed').setMimeType(ContentService.MimeType.TEXT);
   else{
-    var html='您於 '+date+' 在興大二手拍發布了一則留言：<br>'+content;
-    try{
-      MailApp.sendEmail(user,'興大二手拍發布留言通知',{},{
-        noReply:true,
-        htmlBody:html
-      })
-    }catch(e){
-      return ContentService.createTextOutput('無效電子信箱').setMimeType(ContentService.MimeType.TEXT);
-    }
+    // var html='您於 '+date+' 在興大二手拍發布了一則留言：<br>'+content;
+    // try{
+    //   MailApp.sendEmail(user,'興大二手拍發布留言通知',{},{
+    //     noReply:true,
+    //     htmlBody:html
+    //   })
+    // }catch(e){
+    //   return ContentService.createTextOutput('無效電子信箱').setMimeType(ContentService.MimeType.TEXT);
+    // }
     sheet.appendRow([user,content,date,key]);
     return ContentService.createTextOutput('success').setMimeType(ContentService.MimeType.TEXT);
   }
