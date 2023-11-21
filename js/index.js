@@ -229,12 +229,8 @@ window.onload=function(){
             isForumInput(){
                 window.addEventListener('keydown',(e)=>{
                     if(this.mainPageIndex==1){
-                        var dom =document.getElementById('write');
-                        var width = window.getComputedStyle(dom,null).getPropertyValue('width')
                         if(e.code=='Enter'){
-                            if(this.forumContent!='' && Number.parseInt(width)>150){
-                                this.uploadForum();
-                            }
+                            if(this.forumContent!='') this.uploadForum();
                         }
                     }
                 })
@@ -433,15 +429,6 @@ window.onload=function(){
                     this.alert('刷新商品列','warn',15250);
                     fr.classList.add('fa-spin')
                     this.refresh('auto');
-                }
-            },
-            msgRefresh(){
-                var msgScroll= document.getElementById('msgScroll');
-                if(msgScroll.scrollTop==0) {
-                    this.alert('刷新論壇','warn',3000);
-                    document.getElementById('forum-spin').style='display:flex;';
-                    msgScroll.classList.add('content-control2-refresh');
-                    this.getForum('auto');
                 }
             },
             systemRefresh(){
@@ -651,7 +638,7 @@ window.onload=function(){
                     })
                 }
             },
-            getForum(flag){ // 完成
+            getForum(){ // 完成
                 const url='https://script.google.com/macros/s/AKfycbwDJrM4zdqDMqky9JI9t6bR5kpKbg6iElhzZhYJNom_aO5qjLAcfYSe5H9q870p4sXWlQ/exec';
                 var config={
                     method:"GET",
@@ -661,12 +648,6 @@ window.onload=function(){
                 .then(resp=>resp.json())
                 .then(resp=>{
                     this.forumItem=resp.reverse();
-                    if(flag=='auto') {
-                        var msgScroll= document.getElementById('msgScroll');
-                        this.alert('刷新成功','check');
-                        document.getElementById('forum-spin').style='display:none;';
-                        msgScroll.classList.remove('content-control2-refresh');
-                    }
                 })
             },
             deleteForum(key,index){ // 完成
@@ -801,6 +782,7 @@ window.onload=function(){
                     this.getReserveByBuyer();
                     this.getReserveBySeller();
                     this.getSystemInfo();
+                    this.getForum();
                 },10000);
             },
             getReserveByBuyer(){ // 完成

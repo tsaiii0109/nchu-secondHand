@@ -268,7 +268,7 @@
             </div>
             <div class="content" v-if="mainPageIndex==1">
                 <div class="forum-spin" id="forum-spin"><i class="fa-solid fa-spinner fa-spin"></i></div>
-                <div class="content-control content-control2" @scroll="msgRefresh()" id="msgScroll">
+                <div class="content-control content-control2 cc" id="msgScroll">
                     <div class="content-box content-box2" 
                     v-for="obj,index in forumItem" 
                     v-if="obj.user.includes(keyword) || obj.content.includes(keyword) || keyword==''">
@@ -287,7 +287,6 @@
                 </div>
             </div>
             <div class="write" id="write" v-if="mainPageIndex==1">
-                <i class="fa-solid fa-pencil writePen"></i>
                 <input type="text" class="write-input" id="wrInput" v-model="forumContent" placeholder="輸入完畢後按下 Enter 即可發佈留言！">
                 <i  class="fa-solid fa-paper-plane writeSend" @click="forumEnabled?uploadForum():alert('發布進行中，請稍待片刻','warn')"></i>
             </div>
