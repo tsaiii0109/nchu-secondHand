@@ -231,8 +231,9 @@ window.onload=function(){
                 window.addEventListener('keydown',(e)=>{
                     if(this.mainPageIndex==1){
                         if(e.code=='Enter'){
-                            if(this.forumContent!='' && this.forumEnabled) this.uploadForum();
-                            else this.alert('發布進行中，請稍待片刻','warn');
+                            if(this.forumContent=='')  this.alert('上傳資料不可為空','error');
+                            else if(!this.forumEnabled) this.alert('發布進行中，請稍待片刻','warn');
+                            else this.uploadForum();
                         }
                     }
                 })
@@ -616,15 +617,9 @@ window.onload=function(){
             uploadForum(){ // 完成
                 if(this.forumContent=='' || this.forumContent.trim()=='') this.alert('上傳資料不可為空','error');
                 else{
-                    this.writeHolder='冷卻中，請稍候！';
                     this.forumEnabled=false;
-                    // 偽裝發佈
-                    this.forumItem.unshift({
-                        content:this.forumContent,
-                        date:new Date().toLocaleDateString(),
-                        key:'',
-                        user:this.loginData.user+' '
-                    })
+                    this.writeHolder='資料發送中，請稍候再輸入！';
+                    this.alert('發佈中，請稍候！','warn',15500);
                     const url='https://script.google.com/macros/s/AKfycbwDJrM4zdqDMqky9JI9t6bR5kpKbg6iElhzZhYJNom_aO5qjLAcfYSe5H9q870p4sXWlQ/exec';
                     var formData=new FormData();
                     formData.append('user',this.loginData.user);
@@ -638,7 +633,10 @@ window.onload=function(){
                     fetch(url,config)
                     .then(resp=>resp.text())
                     .then(resp=>{
-                        if(resp=='success') this.getForum();
+                        if(resp=='success') {
+                            this.alert('發布成功','check');
+                            this.getForum();
+                        }
                         else this.alert('發布失敗','error');
                         this.forumEnabled=true;
                         this.writeHolder='輸入完畢後按下 Enter 即可發佈留言！'
@@ -790,7 +788,7 @@ window.onload=function(){
                     this.getReserveBySeller();
                     this.getSystemInfo();
                     this.getForum();
-                },5000);
+                },10000);
             },
             getReserveByBuyer(){ // 完成
                 const url='https://script.google.com/macros/s/AKfycbxQ2laPQYNiRbSUcg6Li9paQO08vPKju4SdA7wYqtPxlsm4fme-gM4eJf-wv3wmyNgP/exec';
