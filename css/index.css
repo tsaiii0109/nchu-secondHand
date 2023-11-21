@@ -680,6 +680,17 @@ body{
 .write:hover>.writeSend,.write:hover>.write-input{
     display: block !important;
 }
+.write:active{
+    cursor: pointer;
+    background-color: rgba(0,0,0,0.7);
+    width: 355px;
+}
+.write:active>.writePen{
+    display: none !important;
+}
+.write:active>.writeSend,.write:active>.write-input{
+    display: block !important;
+}
 
 .art-date{
     position: absolute;
