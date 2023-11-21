@@ -649,7 +649,6 @@ body{
     background-color: rgba(0,0,0,0.6);
     color: white;
     overflow: hidden;
-    transition: 0.8s;
     display: flex;
     justify-content: center;
     align-items: center;
