@@ -675,7 +675,7 @@ body{
     border-radius: 0;
 }
 .write-input::placeholder{
-    color: gray;
+    color: white;
 }
 .art-date{
     position: absolute;
