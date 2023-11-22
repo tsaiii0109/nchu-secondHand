@@ -670,11 +670,13 @@ body{
     border: 0;
     background-color: transparent;
     border-bottom: 1px solid rgba(255,255,255,0.7);
-    color: black;
+    color: white;
+    font-size: 14.5px;
     padding-left: 9px;
     border-radius: 0;
 }
 .write-input::placeholder{
+    font-size: 12px;
     color: white;
 }
 .art-date{
