@@ -5,7 +5,7 @@ window.onload=function(){
     const vm = new Vue({
         el:'#app',
         data:{
-            version:'v2.0.0 測試版',
+            version:'v2.0.0 正式版',
             loginPageIndex:1,
             loginStart:false,
             registerStart:false,
@@ -231,7 +231,7 @@ window.onload=function(){
                 window.addEventListener('keydown',(e)=>{
                     if(this.mainPageIndex==1){
                         if(e.code=='Enter'){
-                            if(this.forumContent=='')  this.alert('上傳資料不可為空','error');
+                            if(this.forumContent==''){}
                             else if(!this.forumEnabled) this.alert('發布進行中，請稍待片刻','warn');
                             else this.uploadForum();
                         }
