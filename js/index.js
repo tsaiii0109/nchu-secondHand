@@ -5,7 +5,7 @@ window.onload=function(){
     const vm = new Vue({
         el:'#app',
         data:{
-            version:'v2.0.0 正式版',
+            version:'v2.0.1 搶先版',
             loginPageIndex:1,
             loginStart:false,
             registerStart:false,
@@ -85,7 +85,8 @@ window.onload=function(){
             buyerReserve:[],
             autoGetTimer:-1,
             sysInfoReadTime:0,
-            writeHolder:'輸入完畢後按下 Enter 即可發佈留言！'
+            writeHolder:'輸入完畢後按下 Enter 即可發佈留言！',
+            changeEnabled:true,
         },
         methods:{
             autoLogin(flag){
@@ -710,13 +711,17 @@ window.onload=function(){
                 var box =document.getElementById(id);
                 var length= Object.keys(arr).length;
                 var ps = window.getComputedStyle(box).getPropertyValue("left").split("px")[0];
-                if(method==1){
-                    if(ps==-(337.5*(length-1))) box.style.left ='0px';
-                    else box.style.left=(ps-337.5)+"px";
-                }
-                if(method==2){
-                    if(ps<0) box.style.left=(+ps+337.5)+"px";
-                    else box.style.left =-(337.5*(length-1))+'px';
+                if(this.changeEnabled){
+                    this.changeEnabled=false;
+                    if(method==1){
+                        if(ps==-(335.5*(length-1))) box.style.left ='0px';
+                        else box.style.left=(ps-335.5)+"px";
+                    }
+                    if(method==2){
+                        if(ps<0) box.style.left=(+ps+335.5)+"px";
+                        else box.style.left =-(335.5*(length-1))+'px';
+                    }
+                    setTimeout(()=>this.changeEnabled=true,310);
                 }
             },
             copy(item){

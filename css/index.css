@@ -164,8 +164,8 @@ body{
 }
 .mark{
     position: absolute;
-    top:5px;
-    left:5px;
+    top:7px;
+    right:9px;
     font-size: 26px;
     color: black;
     z-index: 1003;
@@ -441,9 +441,10 @@ body{
 }
 .mark2{
     position: absolute;
-    top:4px;
-    left:7px;
+    top:6px;
+    right:7px;
     font-size: 28px;
+    color: black;
 }
 .mark2:hover{
     cursor: pointer;
@@ -742,14 +743,14 @@ body{
     text-align: center;
     height: 0;
     background-color: rgba(0,0,0,0.2);
-    transition: 0.75s;
+    transition: 0.3s;
 }
 .art-date>i{
     cursor: pointer;
 }
 .menu-c{
     width: 100%;
-    height: 100%;
+    height: 25px;
     margin: 0 auto;
     line-height: 2;
     color: white;
@@ -774,21 +775,30 @@ body{
     cursor: pointer;
 }
 .img_car_all{
-    width: 337.5px;
+    width: 335.5px;
     height: 168.75px;
     position: relative;
     overflow: hidden;  
+}
+.it{
+    height: 500px;
+}
+.contentText{
+    height: 40px;
+    line-height: 40px;
+    padding-left: 10px;
+    font-weight: bolder;
 }
 .img_car{
     display: flex;
     position: absolute;
     left: 0;
+    transition: 0.3s;
 }
 .img_car>img{
-    width: 337.5px;
+    width: 335.5px;
     height: 168.75px;
     z-index: 1002;
-    border-radius: 6px 6px 0 0;
     background-image: url(../img/load_ani.gif);
     background-position: center;
     background-repeat: no-repeat;
