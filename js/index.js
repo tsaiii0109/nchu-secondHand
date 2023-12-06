@@ -5,7 +5,7 @@ window.onload=function(){
     const vm = new Vue({
         el:'#app',
         data:{
-            version:'v2.0.1 搶先版',
+            version:'v2.0.2 正式版',
             loginPageIndex:1,
             loginStart:false,
             registerStart:false,
