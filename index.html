@@ -228,7 +228,7 @@
             </div>
             <div class="header">
                 <div class="mpTitle">
-                    <div class="mpLogo">NCHU</div>
+                    <div class="mpLogo">校園商城</div>
                     <div class="search">
                         <i class="fa-solid fa-magnifying-glass"></i>
                         <input type="text" v-model="keyword" :placeholder="placeholder" id="search_input" @focus="openIndex=0">
@@ -459,4 +459,18 @@
         </div>
 </body>
 <script src="https://kit.fontawesome.com/026fbb8b51.js" crossorigin="anonymous"></script>
+<script src="js/three.js"></script>
+<script src="js/globe.js"></script>
+<script>
+    VANTA.GLOBE({
+    el: "#app",
+    mouseControls: true,
+    touchControls: true,
+    gyroControls: false,
+    minHeight: 1000.00,
+    minWidth: 375.00,
+    scale: 1.00,
+    scaleMobile: 1.00
+    })
+</script>
 </html>
