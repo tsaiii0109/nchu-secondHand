@@ -1,3 +1,6 @@
+input:focus{
+    outline: none;
+}
 body{
     background-size: contain;
     background-repeat: repeat;
