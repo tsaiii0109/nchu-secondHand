@@ -16,3 +16,4 @@ function doPost(e) {
   }
   return ContentService.createTextOutput('使用者不存在').setMimeType(ContentService.MimeType.TEXT);
 }
+
