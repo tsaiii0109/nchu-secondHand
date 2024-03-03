@@ -4,13 +4,13 @@ function doPost(e) {
     var user = param.user;
     var password = param.password;
     if(user=='' || password=='') return ContentService.createTextOutput('failed').setMimeType(ContentService.MimeType.TEXT);
-    if(user.includes('mail.nchu.edu.tw') || user.includes('nchu.edu.tw') || user.includes('dragon.nchu.edu.tw') || user.includes('foreign')){
+    if(!user.includes('gmail') && !user.includes('yahoo') && !user.includes('outlook')){
       if(checkRepeat(user)) return ContentService.createTextOutput('使用者已存在').setMimeType(ContentService.MimeType.TEXT);
       else{
         var code = (new Date().getTime());
         var html ='登入帳號:'+user+'<br>密碼：'+password+'<br>您的登入驗證識別碼為：'+code
         try{
-          MailApp.sendEmail(user,'中興大學二手拍賣APP註冊驗證碼',{},{
+          MailApp.sendEmail(user,'校園二手拍賣APP註冊驗證碼',{},{
             noReply:true,
             htmlBody:html
           })
@@ -21,7 +21,7 @@ function doPost(e) {
         }
       }
     }
-    else return ContentService.createTextOutput('請使用學校電子信箱註冊').setMimeType(ContentService.MimeType.TEXT);
+    else return ContentService.createTextOutput('請使用有效電子信箱註冊').setMimeType(ContentService.MimeType.TEXT);
 }
 function checkRepeat(user){
   var data = sheet.getRange("A1:A"+sheet.getLastRow()).getValues();

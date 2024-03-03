@@ -34,3 +34,4 @@ function doPost(e) {
   }
   return ContentService.createTextOutput('上架成功').setMimeType(ContentService.MimeType.TEXT);
 }
+

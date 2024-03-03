@@ -1,6 +1,5 @@
 const sheet =SpreadsheetApp.openById('1_wamUoxajfCscy369v4Q2iCpTvIg41QrGZYKkPHo8is').getSheetByName('product');
 const test =SpreadsheetApp.getActive();
-// 資料
 const dataRanForSin="C2:C"+sheet.getLastRow();
 const datasForSin =sheet.getRange(dataRanForSin).getValues();
 const dataRanForMul ="D2:D"+sheet.getLastRow();
@@ -10,7 +9,6 @@ function main(){
   startSin();
   startMul();
 }
-// 啟動器(SIN 暫時不開啟)
 function startSin(){
   try{
     for(var i=0;i<datasForSin.length;i++) {
@@ -26,8 +24,6 @@ function startMul(){
     } 
   }catch(e){}
 }
-
-// 工作
 function work(str,index){
   var base64Str=str;
   var fileName=new Date().getTime();
@@ -54,8 +50,6 @@ function works(arr,index) {
   }
   sheet.getRange("D"+index).setValue(JSON.stringify(newArr));
 }
-
-// asset
 function getFolder(){
   var folders=DriveApp.getFoldersByName("upload");
   while(folders.hasNext()){
