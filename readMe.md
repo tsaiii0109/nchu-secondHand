@@ -4,4 +4,4 @@
 <p>網頁連結（示範環境）：<a href='https://tsaiii0109.github.io/nchu-secondHand/'>點擊連結</a></p>
 <hr>
 <img src='img/gold.jpg' width=46% style='margin-right:5px'>
-<img src='img/final.png' width=46%>
+<img src='img/final.png' width=46% style='display:inline-block'>
