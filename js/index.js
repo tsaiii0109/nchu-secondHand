@@ -793,7 +793,7 @@ window.onload=function(){
                     this.getReserveBySeller();
                     this.getSystemInfo();
                     this.getForum();
-                },10000);
+                },5000);
             },
             getReserveByBuyer(){ // 完成
                 const url='https://script.google.com/macros/s/AKfycbxQ2laPQYNiRbSUcg6Li9paQO08vPKju4SdA7wYqtPxlsm4fme-gM4eJf-wv3wmyNgP/exec';
