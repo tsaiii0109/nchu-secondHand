@@ -5,7 +5,7 @@ window.onload=function(){
     const vm = new Vue({
         el:'#app',
         data:{
-            version:'v2.0.2 正式版',
+            version:'v2.0.3 正式版',
             loginPageIndex:1,
             loginStart:false,
             registerStart:false,
@@ -85,7 +85,7 @@ window.onload=function(){
             buyerReserve:[],
             autoGetTimer:-1,
             sysInfoReadTime:0,
-            writeHolder:'輸入完畢後按下 Enter 即可發佈留言！',
+            writeHolder:'歡迎在此留下你想說的話！!',
             changeEnabled:true,
         },
         methods:{
@@ -416,7 +416,7 @@ window.onload=function(){
                 this.autoGet();
                 this.getSystemInfo();
                 // 事件綁定
-                this.isForumInput();
+                //this.isForumInput();
             },
             refresh(flag){
                 this.getProduct(flag);
@@ -640,7 +640,7 @@ window.onload=function(){
                         }
                         else this.alert('發布失敗','error');
                         this.forumEnabled=true;
-                        this.writeHolder='輸入完畢後按下 Enter 即可發佈留言！'
+                        this.writeHolder='歡迎在此留下你想說的話！!'
                     })
                 }
             },
